@@ -1,0 +1,6 @@
+if(NOT TARGET moongl)
+    find_package(Lua CONFIG)
+    find_package(GLEW CONFIG)
+    find_package(glfw3)
+    include("${CMAKE_CURRENT_LIST_DIR}/moonglTargets.cmake")
+endif()

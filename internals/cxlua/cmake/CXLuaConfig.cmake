@@ -1,0 +1,5 @@
+if(NOT TARGET CXLua::CXLua)
+    find_package(LuaCJson)
+    find_package(EZIO)
+    include("${CMAKE_CURRENT_LIST_DIR}/CXLuaTargets.cmake")
+endif()

@@ -1,0 +1,42 @@
+
+[[datahandling]]
+== Data handling utilities
+
+The functions described in this section are MoonGL-specific utilities (they have no 
+equivalent in OpenGL) that can be used to encode data from Lua variables to 
+binary strings, and to decode data the other way round.
+They are useful to deal with the binary string format expected by GL functions like, 
+for example, <<gl.buffer_data, buffer_data>>( ) and 
+<<gl.buffer_data, buffer_sub_data>>( ).
+
+
+[[gl.flatten]]
+* _val~1~_, _..._, _val~N~_ = *flatten*(_table_) _NONGL_ +
+[small]#Flattens out the given _table_ and returns the terminal elements in the order they are found.
+Similar to Lua's 
+link:++http://www.lua.org/manual/5.3/manual.html#pdf-table.unpack++[table.unpack]( ), 
+it also unpacks any nested table. Only the array part of the table(s) is considered.#
+
+[[gl.flatten_table]]
+* {_val~1~_, _..._, _val~N~_} = *flatten_table*(_table_) _NONGL_ +
+[small]#Same as <<gl.flatten, flatten>>(&nbsp;), but returns the values in a flat table.
+Unlike <<gl.flatten, flatten>>(&nbsp;), this function can be used also with very large tables.#
+
+[[gl.sizeof]]
+* _size_ = *sizeof*(<<type, _type_>>) _NONGL_ +
+[small]#Returns the size, in bytes, of the GL _type_.#
+
+
+[[gl.pack]]
+* <<data, _data_>> = *pack*(<<type, _type_>>, _val~1~_, _..._, _val~N~_) _NONGL_ +
+<<data, _data_>> = *pack*(<<type, _type_>>, _table_) _NONGL_ +
+[small]#Packs the numbers _val~1~_, _..._, _val~N~_ in a binary string, encoding them
+according to _type_. The values may be passed also in a (possibly nested) table _t_.#
+
+
+* {_val~1~_, _..._, _val~N~_} = *unpack*(<<type, _type_>>, <<data, _data_>>) _NONGL_ +
+[small]#Unpacks the binary string _data_, interpreting it as a sequence of values
+enncoded according to _type_, and returns the extracted values in a flat table. The length of the
+binary string must be a multiple of _gl.sizeof(type)_.#
+
+

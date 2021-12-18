@@ -1,0 +1,97 @@
+
+== Per-Fragment Operations
+
+Scissor Test:
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+[[gl.scissor]]
+* *scissor_array*(_first_, _x~1~_, _y~1~_, _w~1~_, _h~1~_, [_x~2~_, _y~2~_, _w~2~_, _h~2~_, _..._]) +
+*scissor*(_left_, _bottom_, _width_, _height_, [_index_]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glScissor[glScissor] -
+https://www.khronos.org/opengl/wiki/GLAPI/glScissorArray[glScissorArray].#
+
+'''
+
+Multisample Fragment Ops.:
+
+[[gl.sample_coverage]]
+* *sample_coverage*(_value_, _invert_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSampleCoverage[glSampleCoverage].#
+
+[[gl.sample_mask]]
+* *sample_mask*(_masknumber_, _mask_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSampleMask[glSampleMask].#
+
+'''
+
+Stencil Test:
+
+[[gl.stencil_func]]
+* *stencil_func*(_func_, _ref_, _mask_, [_face_]) +
+[small]#_func_: '_never_' for GL_NEVER, '_always_' for GL_ALWAYS, etc. +
+_face_: '_front_', '_back_', '_front and back_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilFunc[glStencilFunc].#
+
+[[gl.stencil_op]]
+* *stencil_op*(_sfail_, _dpfail_, _dppass_, [_face_]) +
+[small]#_sfail_, _dpfail_, _dppass_: '_keep_' for GL_KEEP, '_incr wrap_' for GL_INCR_WRAP, etc. +
+_face_: '_front_', '_back_', '_front and back_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilOp[glStencilOp].#
+
+'''
+
+Depth Buffer Test:
+
+[[gl.depth_func]]
+* *depth_func*(_func_) +
+[small]#_func_: '_never_' for GL_NEVER, '_always_' for GL_ALWAYS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthFunc[glDepthFunc].#
+
+'''
+
+Occlusion Queries:
+
+* <<gl.begin_query, begin_query/end_query>>
+
+'''
+
+Blending:
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+[[gl.blend_equation]]
+* *blend_equation*(_mode_) +
+*blend_equation*(_buf_, _mode_) +
+*blend_equation*(_rgb_, _alpha_) +
+*blend_equation*(_buf_, _rgb_, _alpha_) +
+[small]#_mode_, _rgb_, _aplha_: '_min_', '_max_', '_add_', '_subtract_', '_reverse subtract_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBlendEquation[glBlendEquation].#
+
+[[gl.blend_func]]
+* *blend_func*(_src_, _dst_) +
+*blend_func*(_buf_, _src_, _dst_) +
+*blend_func*(_srcrgb_, _dstrgb_, _srcalpha_, _dstalpha_) +
+*blend_func*(_buf_, _srcrgb_, _dstrgb_, _srcalpha_, _dstalpha_) +
+[small]#_src_, _dst_: '_zero_', '_one_', '_src color_', '_one minus src color_', etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBlendFunc[glBlendFunc].#
+
+[[gl.blend_color]]
+* *blend_color*(_red_, _green_, _blue_, _alpha_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBlendColor[glBlendColor].#
+
+'''
+
+Dithering:
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+'''
+
+Logical Operations:
+
+[[gl.logic_op]]
+* *logic_op*(_op_, _green_, _blue_, _alpha_) +
+[small]#_op_: '_clear_', '_and_', '_and reverse_', etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLogicOp[glLogicOp].#
+

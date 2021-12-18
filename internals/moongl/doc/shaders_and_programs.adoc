@@ -1,0 +1,337 @@
+
+== Shaders and Programs
+
+The following functions are MoonGL additions to ease the creation of shading programs:
+
+[[gl.make_program]]
+* _program_, _shader~1~_, _shader~2~_, _..._ =
+*make_program*(<<shadertype, _shadertype~1~_>>, _filename~1~_, [<<shadertype, _shadertype~2~_>>, _filename~2~_, _..._]) _NONGL_ +
+_program_, _shader~1~_, _shader~2~_, _..._ =
+*make_program*({<<shadertype, _shadertype_>> = _filename_}) _NONGL_ +
+[small]#Creates, compiles and links a program with the given shaders, checking for errors at each compilation step. +
+Returns the OpenGL names assigned to the program and to the shaders.#
+
+
+[[gl.make_program_s]]
+* _program_, _shader~1~_, _shader~2~_, _..._ =
+*make_program_s*(<<shadertype, _shadertype~1~_>>, _sourcestring~1~_, [<<shadertype, _shadertype~2~_>>, _sourcestring~2~_, _..._]) _NONGL_ +
+_program_, _shader~1~_, _shader~2~_, _..._ =
+*make_program_s*({<<shadertype, _shadertype_>>, _sourcestring_}) _NONGL_ +
+[small]#Same as <<gl.make_program, gl.make_program>>(&nbsp;), but loads the shaders' code from strings instead of from files.#
+
+* *clean_program*(_program_, _shader~1~_, _shader~2~_, _..._) _NONGL_ +
+[small]#Given the names of a program and of the shaders attached to it, detaches the
+shaders, and deletes them and the program.#
+
+'''
+
+Shader Objects
+
+[[gl.create_shader]]
+* _shader_ = *create_shader*(<<shadertype, _shadertype_>>) +
+*delete_shaders*(_shader~1~_, _..._) +
+*delete_shader*(_shader_) _NONGL_ +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCreateShader[glCreateShader] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteShader[glDeleteShader].#
+
+[[gl.shader_source]]
+* *shader_source*(_shader_, _sourcestring_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glShaderSource[glShaderSource].#
+
+[[gl.compile_shader]]
+* *compile_shader*(_shader_, [_checkstatus=false_]) +
+[small]#If _checkstatus=true_, also checks the compile status and possibly raises
+an error with the info log. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCompileShader[glCompileShader].#
+
+[[gl.release_shader_compiler]]
+* *release_shader_compiler*( ) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glReleaseShaderCompiler[glReleaseShaderCompiler].#
+
+////
+[[gl.is_shader]]
+* _boolean_ = *is_shader*(_shader_)
+////
+
+[[gl.shader_binary]]
+* *shader_binary*(_{shader~1~, ...}_, <<shaderbinaryformat, _binaryformat_>>, _binary_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glShaderBinary[glShaderBinary].#
+
+[[gl.specialize_shader]]
+* *specialize_shader*(_shader_, _entrypoint_, [_{index}_, _{value}_]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSpecializeShader[glSpecializeShader].#
+
+
+'''
+
+Program Objects
+
+[[gl.create_program]]
+* _program_ = *create_program*( ) +
+*delete_programs*(_program~1~_, _..._) +
+*delete_program*(_program_) _NONGL_ +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glCreateProgram[glCreateProgram] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteProgram[glDeleteProgram].#
+
+[[gl.attach_shader]]
+* *attach_shader*(_program_, _shader_) +
+*detach_shader*(_program_, _shader_) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glAttachShader[glAttachShader] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDetachShader[glDetachShader].#
+
+[[gl.link_program]]
+* *link_program*(_program_, [_checkstatus=false_]) +
+[small]#If _checkstatus=true_, also checks the link status and possibly raises
+an error with the info log. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLinkProgram[glLinkProgram].#
+
+[[gl.use_program]]
+* *use_program*(_program_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glUseProgram[glUseProgram].#
+
+[[gl.program_parameter]]
+* *program_parameter*(_program_, _pname_, _boolean_) +
+[small]#_pname_: '_separable_', '_binary retriavable hint_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glProgramParameter[glProgramParameter].#
+
+[[gl.create_shader_program]]
+* _program_ = *create_shader_program*(<<shadertype, _shadertype_>>, _sourcestring_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCreateShaderProgram[glCreateShaderProgram].#
+
+////
+[[gl.is_program]]
+* _boolean_ = *is_program*(_program_)
+////
+
+[[gl.get_program_binary]]
+* _format_, _binary_ = *get_program_binary*(_program_) +
+*program_binary*(_program_, _format_, _binary_) +
+[small]#_format_: integer, +
+_binary_: binary string +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGetProgramBinary[glGetProgramBinary] -
+https://www.khronos.org/opengl/wiki/GLAPI/glProgramBinary[glProgramBinary].#
+
+'''
+
+Program Pipeline Objects
+
+[[gl.gen_program_pipelines]]
+* _pipeline_ = *new_program_pipeline*( ) _NONGL_ +
+_pipeline~1~_, _pipeline~2~_, _..._ = *gen_program_pipelines*([_n_ = 1]) +
+_pipeline~1~_, _pipeline~2~_, _..._ = *create_program_pipelines*([_n_ = 1]) +
+*bind_program_pipeline*(_pipeline_) +
+*unbind_program_pipeline*( ) _NONGL_ +
+*delete_program_pipelines*(_pipeline~1~_, [_pipeline~2~_, _..._]) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGenProgramPipelines[glGenProgramPipelines] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindProgramPipeline[glBindProgramPipeline] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteProgramPipelines[glDeleteProgramPipelines].#
+
+////
+[[gl.is_program_pipeline]]
+* _boolean_ = *is_program_pipeline*(_pipeline_)
+////
+
+[[gl.use_program_stages]]
+* *use_program_stages*(_pipeline_, _program_, _stage_, _..._) +
+[small]#_stage_: '_vertex_'  for GL_VERTEX_SHADER_BIT, '_tess control_' for GL_TESS_CONTROL_SHADER_BIT, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glUseProgramStages[glUseProgramStages].#
+
+[[gl.active_shader_program]]
+* *active_shader_program*(_pipeline_, _program_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glActiveShaderProgram[glActiveShaderProgram].#
+
+'''
+
+Uniform Variables Queries:
+
+[[gl.get_uniform_location]]
+* _location_ = *get_uniform_location*(_program_, _name_) +
+_name_ = *get_active_uniform_name*(_program_, _index_) +
+_index~1~_, _..._ = *get_uniform_indices*(_program_, _name~1~_, [_name~2~_, _..._]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformLocation[glGetUniformLocation] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformName[glGetActiveUniformName] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices[glGetUniformIndices].#
+
+[[gl.get_active_uniform]]
+* _name_, _type_, _size_ = *get_active_uniform*(_program_, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniform[glGetActiveUniform].#
+
+[[gl.get_active_uniforms]]
+* _value~1~_, _..._ = *get_active_uniforms*(_program_, _pname_, _index~1~_, [_index~2~_, _..._]) +
+[small]#_pname_: '_type_' for GL_UNIFORM_TYPE, '_name length_' for GL_UNIFORM_NAME_LENGTH, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniforms[glGetActiveUniforms].#
+
+[[gl.get_uniform_block_index]]
+* _index_ = *get_uniform_block_index*(_program_, _name_) +
+_name_ = *get_active_uniform_block_name*(_program_, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformBlockIndex[glGetUniformBlockIndex] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName[glGetActiveUniformBlockName].#
+
+[[gl.get_active_uniform_block]]
+* _value_ = *get_active_uniform_block*(_program_, _index_, _pname_) +
+[small]#_pname_: '_binding_' for GL_UNIFORM_BLOCK_BINDING, '_data size_' for 
+GL_UNIFORM_BLOCK_DATA_SIZE, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlock[glGetActiveUniformBlock].#
+
+[[gl.get_active_atomic_counter_buffer]]
+* _value_ = *get_active_atomic_counter_buffer*(_program_, _index_, _pname_) +
+[small]#_pname_: '_binding_' for GL_ATOMIC_COUNTER_BUFFER_BINDING, '_data size_' for 
+GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveAtomicCounterBuffer[glGetActiveAtomicCounterBuffer].#
+
+'''
+
+Load Uniform Variables:
+
+[[gl.uniform]]
+* *uniform*(_location_, _type_, _val~1~_, [_val~2~_, _val~3~_, _val~4~_]) +
+*uniformv*(_location_, _count_, _type_, _val~1~_, [_val~2~_, _..._ ]) +
+*program_uniform*(_program_, _location_, _type_, _val~1~_, [_val~2~_, _val~3~_, _val~4~_]) +
+*program_uniformv*(_program_, _location_, _count_, _type_, _val~1~_, [_val~2~_, _..._ ]) +
+[small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
+_count_: number of vectors (or variables) in the array. +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glUniform[glUniform] -
+https://www.khronos.org/opengl/wiki/GLAPI/glProgramUniform[glProgramUniform].
+See <<snippet_uniform, example>>.#
+
+[[gl.uniform_matrix]]
+* *uniform_matrix*(_location_, _type_, _size_, _transpose_, _val~1~_, _val~2~_, _..._, _val~N~_) +
+*uniform_matrixv*(_location_, _count_, _type_, _size_, _transpose_, _val~1~_, _val~2~_, _..._, _val~N~_) +
+*program_uniform_matrix*(_program_, _location_, _type_, _size_, _transpose_, _val~1~_, _val~2~_, _..._, _val~N~_) +
+*program_uniform_matrixv*(_program_, _location_, _count_, _type_, _size_, _transpose_, _val~1~_, _val~2~_, _..._, _val~N~_) +
+[small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
+_size_: '_2x2_', '_3x3_', '_4x4_', '_2x3_', '_3x2_', '_2x4_', '_4x2'_', '_3x4_', '_4x3_'. +
+_transpose_: boolean (= _true_ if the value are passed in row-major order). +
+_count_: number of matrices in the array (_N_ = _count_ x no. of elements in a matrix). +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glUniformMatrix[glUniformMatrix] -
+https://www.khronos.org/opengl/wiki/GLAPI/glProgramUniformMatrix[glProgramUniformMatrix].
+See <<snippet_uniform_matrix, example>>.#
+
+'''
+
+Uniform Buffer Objects Bindings:
+
+[[gl.uniform_block_binding]]
+* *uniform_block_binding*(_program_, _index_, _binding_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glUniformBlockBinding[glUniformBlockBinding].#
+
+'''
+
+Shader Buffer Variables:
+
+[[gl.shader_storage_block_binding]]
+* *shader_storage_block_binding*(_program_, _index_, _binding_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glShaderStorageBlockBinding[glShaderStorageBlockBinding].#
+
+'''
+
+Subroutine Uniform Variables:
+
+[[gl.get_subroutine_uniform_location]]
+* _location_ = *get_subroutine_uniform_location*(_program_, <<shadertype, _shadertype_>>, _name_) +
+_index_ = *get_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_) +
+_name_ = *get_active_subroutine_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
+_name_ = *get_active_subroutine_uniform_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetSubroutineUniformLocation[glGetSubroutineUniformLocation] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetSubroutineIndex[glGetSubroutineIndex] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName[glGetActiveSubroutineName] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName[glGetActiveSubroutineUniformName].#
+
+[[gl.get_active_subroutine_uniform]]
+* _value_, _..._ = 
+*get_active_subroutine_uniform*(_program_, <<shadertype, _shadertype_>>, _index_, _pname_) +
+[small]#_pname_: '_compatible subroutines_' for GL_COMPATIBLE_SUBROUTINES, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniform[glGetActiveSubroutineUniform].#
+
+[[gl.uniform_subroutines]]
+* *uniform_subroutines*(<<shadertype, _shadertype_>>, _index~1~_, [_index~2~_, _..._]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glUniformSubroutines[glUniformSubroutines].#
+
+'''
+
+Shared Memory Access
+
+[[gl.memory_barrier]]
+* *memory_barrier*(_bit~1~_, _bit~2~_, _..._) +
+*memory_barrier_by_region*(_bit~1~_, _bit~2~_, _..._) +
+[small]#_bit~k~_: '_all_' for GL_ALL_BARRIER_BITS, '_vertex attrib array_' for GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMemoryBarrier[glMemoryBarrier].#
+
+'''
+
+Program Interfaces:
+
+[[gl.get_program_interface]]
+* _value_ = *get_program_interface*(_program_, _interface_, _pname_) +
+_index_ = *get_program_resource_index*(_program_, _interface_, _name_) +
+_name_ = *get_program_resource_name*(_program_, _interface_, _index_) +
+_location_ = *get_program_resource_location*(_program_, _interface_, _name_) +
+_index_ = *get_program_resource_location_index*(_program_, _interface_, _name_) +
+_value_, _..._ = *get_program_resource*(_program_, _interface_, _index_, _property_) +
+[small]#_interface_: '_uniform_' for GL_UNIFORM, '_uniform block_' for GL_UNIFORM_BLOCK, etc. +
+_property_: '_array size_' for GL_ARRAY_SIZE, '_array stride_' for GL_ARRAY_STRIDE, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
+
+'''
+
+Shader and Program Queries
+
+[[gl.get_shader]]
+* _value_ = *get_shader*(_shader_, _pname_) +
+[small]#_pname_: '_type_', '_delete status_', '_compile status_', '_info log length_', '_source length_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetShader[glGetShader].#
+
+[[gl.get_program]]
+* _value_, _..._ = *get_program*(_program_, _pname_) +
+[small]#_pname_: '_active atomic counter buffers_' for GL_ACTIVE_ATOMIC_COUNTER_BUFFERS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetProgram[glGetProgram].#
+
+[[gl.get_program_pipeline]]
+* _value_, _..._ = *get_program_pipeline*(_pipeline_, _pname_) +
+[small]#_pname_: '_active program_' for GL_ACTIVE_PROGRAM, '_validate status_' for GL_VALIDATE_STATUS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetProgramPipeline[glGetProgramPipeline].#
+
+[[gl.get_attached_shaders]]
+* _shader~1~_, _..._ = *get_attached_shaders*(_program_) +
+[small]#Returns _nil_ if no shaders are attached to _program_. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetAttachedShaders[glGetAttachedShaders].#
+
+[[gl.get_info_log]]
+* _string_ = *get_shader_info_log*(_shader_) +
+_string_ = *get_program_info_log*(_program_) +
+_string_ = *get_program_pipeline_info_log*(_pipeline_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetShaderInfoLog[glGetShaderInfoLog] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetProgramInfoLog[glGetProgramInfoLog] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetProgramPipelineInfoLog[glGetProgramPipelineInfoLog].#
+
+[[gl.get_shader_source]]
+* _string_ = *get_shader_source*(_shader_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetShaderSource[glGetShaderSource].#
+
+[[gl.get_shader_precision_format]]
+* _range~0~_, _range~1~_, _precision_ = 
+*get_shader_precision_format*(<<shadertype, _shadertype_>>, _precisiontype_) +
+[small]#_precisiontype_: '_low int_' for GL_LOW_INT, '_medium int_' for GL_MEDIUM_INT, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetShaderPrecisionFormat[glGetShaderPrecisionFormat].#
+
+[[gl.get_uniform]]
+* _val~1~_, _..._ = *get_uniform*(_program_, _location_, _type_, _size_) +
+[small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
+_size_: number of elements in the uniform variable, vector or matrix (_1 ... 16_). +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniform[glGetUniform].#
+
+[[gl.get_uniform_subroutine]]
+* _value_ = *get_uniform_subroutine*(<<shadertype, _shadertype_>>, _location_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformSubroutine[glGetUniformSubroutine].#
+
+[[gl.get_program_stage]]
+* _value_, _..._ = *get_program_stage*(_program_, <<shadertype, _shadertype_>>, _pname_) +
+[small]#_pname_: '_active subroutines_' for GL_ACTIVE_SUBROUTINES, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetProgramStage[glGetProgramStage].#
+

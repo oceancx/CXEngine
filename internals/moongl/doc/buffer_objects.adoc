@@ -1,0 +1,116 @@
+
+== Buffer Objects
+
+[[gl.bind_buffer]]
+* _buffer_ = *new_buffer*(<<buffertarget,_target_>>) _NONGL_ +
+_buffer~1~_, _buffer~2~_, _..._ = *gen_buffers*([_n_ = 1]) +
+_buffer~1~_, _buffer~2~_, _..._ = *create_buffers*([_n_ = 1]) +
+*bind_buffer*(<<buffertarget,_target_>>, [_buffer_]) +
+*unbind_buffer*(<<buffertarget,_target_>>) _NONGL_ +
+*delete_buffers*(_buffer~1~_, [_buffer~2~_, _..._]) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGenBuffers[glGenBuffers] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindBuffers[glBindBuffers] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteBuffers[glDeleteBuffers]. +
+See <<snippet_rectangle, example>>.#
+
+'''
+
+Create/Modify Buffer Object Data:
+
+[[gl.buffer_storage]]
+* _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, [<<data,_data_>>|<<dataptr, _dataptr_>>], [_flag_, _flag_, _..._]) +
+[small]#_flag_: '_dynamic range_' for GL_DYNAMIC_RANGE_BIT, '_map read_' for GL_MAP_READ_BIT, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage[glBufferStorage].#
+
+[[gl.buffer_data]]
+* _size_ = *buffer_data*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>|<<dataptr, _dataptr_>>|_size_, _usage_) +
+_size_ = *buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>|<<dataptr, _dataptr_>>) +
+[small]#_size_: size of memory to allocate for the buffer (in bytes). +
+_usage_: '_static draw_' for GL_STATIC_DRAW, '_static read_' for GL_STATIC READ, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferData[glBufferData] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBufferSubData[glBufferSubData]. +
+See <<snippet_rectangle, example>> and <<datahandling, 'Data handling utilities'>>.#
+
+[[gl.clear_buffer_data]]
+* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>]) +
+*clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferData[glClearBufferData] -
+https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferSubData[glClearBufferSubData]. +
+See also <<datahandling, 'Data handling utilities'>>.#
+
+[[gl.bind_buffer_range]]
+* *bind_buffer_range*(<<buffertarget,_target_>>, _index_, _buffer_, _offset_, _size_) +
+*bind_buffer_base*(<<buffertarget,_target_>>, _index_, _buffer_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindBufferRange[glBindBufferRange] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindBufferBase[glBindBufferBase].#
+
+'''
+
+Map/Unmap Buffer Data:
+
+[[gl.map_buffer]]
+* _ptr_ = *map_buffer*(<<buffertarget,_target_>>|_buffer_, _access_) +
+_ptr_ = *map_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, [_accessbit~1~_, _..._]) +
+*unmap_buffer*(<<buffertarget,_target_>>|_buffer_) +
+[small]#_access_: '_read only_', '_write only_', '_read write_', +
+_accessbit_: '_read_' for GL_MAP_READ_BIT, '_invalidate buffer_' for GL_INVALIDATE_BUFFER_BIT, etc. +
+The returned _ptr_ value is a lightuserdata containing the raw pointer to the mapped memory (use at your peril). +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer[glMapBuffer] -
+https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange[glMapBufferRange].#
+
+[[gl.flush_mapped_buffer_range]]
+* *flush_mapped_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlushMappedBufferRange[glFlushMappedBufferRange].#
+
+[[gl.mapped_buffer_write]]
+* *mapped_buffer_write*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>|<<dataptr,_dataptr_>>) _NONGL_ +
+<<data,_data_>> = *mapped_buffer_read*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_) _NONGL_ +
+[small]#Write/read data to/from a mapped buffer (non-OpenGL functions).#
+
+[[gl.mapped_buffer_copy_from]]
+* *mapped_buffer_copy_from*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, _srcptr_, [_srcoffset_=0]) _NONGL_ +
+*mapped_buffer_copy_to*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, _dstptr_, [_dstoffset_=0]) _NONGL_ +
+[small]#Copy data from/to raw memory to/from a mapped buffer (non-OpenGL functions). +
+_srcptr_, _dstptr_: lightuserdata containing a pointer to raw memory. +
+(Note that MoonGL has no means to perform boundary checks on the passed raw memory, so use with caution.)#
+
+'''
+
+Invalidate Buffer Data:
+
+[[gl.invalidate_buffer_data]]
+* *invalidate_buffer_data*(_buffer_) +
+*invalidate_buffer_sub_data*(_buffer_, _offset_, _length_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateBufferData[glInvalidateBufferData] -
+https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateBufferSubData[glInvalidateBufferSubData].#
+
+'''
+
+Buffer Object Queries:
+
+////
+[[gl.is_buffer]]
+* _boolean_ = *is_buffer*(_buffer_)
+////
+
+
+[[gl.get_buffer_sub_data]]
+* <<data,_data_>> = *get_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, _size_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetBufferSubData[glGetBufferSubData].#
+
+[[gl.get_buffer_parameter]]
+* _value_, _..._ = *get_buffer_parameter*(<<buffertarget,_target_>>|_buffer_, _pname_) +
+[small]#_pname_: '_size_' for GL_BUFFER_SIZE, '_storage flags_' for GL_BUFFER_STORAGE_FLAGS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetBufferParameter[glGetBufferParameter].#
+
+'''
+
+Copy Between Buffers:
+
+[[gl.copy_buffer_sub_data]]
+* *copy_buffer_sub_data*(<<buffertarget, _readtarget_>>|_readbuffer_, <<buffertarget, _writetarget_>>|_writebuffer_, _readoffset_, _writeoffset_, _size_) +
+[small]#Source and destination must be specified both as targets or both as buffer names. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCopyBufferSubData[glCopyBufferSubData].#
+
+

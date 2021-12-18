@@ -1,0 +1,35 @@
+
+== Asynchronous Queries and Timers
+
+[[gl.gen_queries]]
+* _id~1~_, _id~2~_, _..._ = *gen_queries*([_n_ = 1]) +
+_id~1~_, _id~2~_, _..._ = *create_queries*(_target_, [_n_ = 1]) +
+*delete_queries*(_id~1~_, [_id~2~_, _..._]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGenQueries[glGenQueries] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteQueries[glDeleteQueries].#
+
+
+[[gl.begin_query]]
+* *begin_query*(_target_, _id_, [_index_]) +
+*end_query*(_target_, [_index_]) +
+[small]#_target_: '_any samples passed_' for GL_ANY_SAMPLE_PASSED, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBeginQuery[glBeginQuery].#
+
+////
+[[gl.is_query]]
+* _boolean_ = *is_query*(_id_)
+////
+
+[[gl.get_query]]
+* _value_  = *get_query*(_target_, _pname_, [_index_]) +
+[small]#_pname_: '_current query_', '_query counter bits_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetQuery[glGetQuery].#
+
+[[gl.query_counter]]
+* *query_counter*(_id_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glQueryCounter[glQueryCounter].#
+
+[[gl.get_timestamp]]
+* _time_ = *get_timestamp*( ) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTimestamp[glGetTimestamp].#
+

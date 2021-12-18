@@ -1,0 +1,154 @@
+
+== Code Snippets
+
+This section contains code snippets (i.e. incomplete examples) that show the usage
+of MoonGL functionalities in practice.
+
+[[snippet_init]]
+.OpenGL initialization with MoonGLFW.
+[source,lua]
+----
+gl = require("moongl")
+glfw = require("moonglfw")
+
+-- Create a window and make its GL context current:
+window = glfw.create_window(600, 400, "Hello, MoonGL!")
+glfw.make_context_current(window)
+
+-- This is actually glewInit():
+gl.init()
+
+-- ... now it is safe to call MoonGL functions ...
+----
+
+[[snippet_is_supported]]
+.Usage of is_supported( ).
+[source,lua]
+----
+if not gl.is_supported("GL_VERSION_4_5") then
+  error("Sorry, OpenGL 4.5 is not supported by your system")
+end
+----
+
+[[snippet_clear]]
+.Clearing the framebuffer.
+[source,lua]
+----
+-- specify the clear value for the color buffer:
+gl.clear_color(1.0, 0.0, 0.0, 1.0) 
+
+-- specify the clear value for the depth buffer:
+gl.clear_depth(0.6)
+
+-- clear the color buffer and the depth buffer:
+gl.clear('color', 'depth') 
+----
+
+[[snippet_rectangle]]
+.Defining a rectangle.
+[source,lua]
+----
+vertices = {
+-- position:        color:          texture coords:    0 ____ 1
+  -0.5,  0.5, 0.0,  1.0, 0.0, 0.0,  0.0, 1.0, -- 0      |   /|  
+   0.5,  0.5, 0.0,  0.0, 1.0, 0.0,  1.0, 1.0, -- 1      | /  |
+   0.5, -0.5, 0.0,  0.0, 0.0, 1.0,  1.0, 0.0, -- 2      |/___|
+  -0.5, -0.5, 0.0,  1.0, 1.0, 1.0,  0.0, 0.0, -- 3     3      2
+}
+
+indices = {
+    0, 1, 3, -- first triangle
+    1, 2, 3, -- second triangle
+}
+
+floatsz = gl.sizeof('float')
+   
+vao = gl.new_vertex_array()  -- vertex array object
+vbo = gl.new_buffer('array') -- vertex buffer object
+gl.buffer_data('array', gl.pack('float', vertices), 'static draw')
+-- position attribute
+gl.vertex_attrib_pointer(0, 3, 'float', false, 8*floatsz, 0)
+gl.enable_vertex_attrib_array(0)
+-- color attribute
+gl.vertex_attrib_pointer(1, 3, 'float', false, 8*floatsz, 3*floatsz)
+gl.enable_vertex_attrib_array(1)
+-- texture coords attribute
+gl.vertex_attrib_pointer(2, 2, 'float', false, 8*floatsz, 6*floatsz)
+gl.enable_vertex_attrib_array(2)
+
+ebo = gl.new_buffer('element array') -- element buffer object
+gl.buffer_data('element array', gl.pack('uint', indices), 'static draw')
+
+gl.unbind_vertex_array()
+----
+
+
+[[snippet_uniform]]
+.Assigning values to uniform variables.
+[source,lua]
+----
+gl.uniform(0, 'uint', 123)
+gl.uniform(1, 'float', 1.234)
+gl.uniform(2, 'bool', true)
+
+gl.uniform(3, 'int', 1, 2) -- 2D vector
+
+v = { 1.0, 2.0, 3.0 }
+gl.uniform(4, 'float', gl.flatten(v)) -- table.unpack(v) would do also
+----
+
+[[snippet_uniform_matrix]]
+.Assigning values to uniform matrices.
+[source,lua]
+----
+
+M = { 1.0, 2.0, 3.0  -- row-major order
+      4.0, 5.0, 6.0
+      7.0, 8.0, 9.0 }
+
+gl.uniform_matrix(0, 'float', '3x3', true, gl.flatten(M))
+
+----
+
+
+[[snippet_new_texture]]
+.Creating and using a texture (loaded with MoonImage).
+[source,lua]
+----
+-- 1) Creating the texture:
+tex_id = gl.new_texture('2d')
+-- configure it:
+gl.texture_parameter('2d', 'wrap s', 'repeat')
+gl.texture_parameter('2d', 'wrap t', 'repeat')
+gl.texture_parameter('2d', 'min filter', 'linear')
+gl.texture_parameter('2d', 'mag filter', 'linear')
+-- load the texture image using MoonImage:
+image, w, h = mi.load('myimage.png', 'rgb')
+gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', image, w, h)
+image, w, h = nil, nil, nil -- let the GC collect them
+-- generate the mipmap:
+gl.generate_mipmap('2d')
+gl.unbind_texture('2d')
+
+-- ...
+
+-- 2) Using the texture in the game loop:
+gl.use_program(prog_id)
+gl.active_texture(0) -- activate texture unit 0
+gl.bind_texture('2d', tex_id)
+-- Assuming our program has a sampler2D uniform named mytexture:
+gl.uniform(gl.uniform_location(prog_id, 'mytexture'), 'int', 0)
+-- ... bind geometry and draw ...
+
+----
+
+
+
+////
+
+[small]#See <<snippet_, example>>.#
+See <<snippet_, example>>
+
+////
+
+

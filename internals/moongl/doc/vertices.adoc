@@ -1,0 +1,30 @@
+
+== Vertices
+
+Separate Patches :
+
+[[gl.patch_parameter]]
+* *patch_parameter*(_pname_, _val_, [_val_, _..._]) +
+[small]#_pname_: '_vertices_', '_default outer level_',  '_default inner level_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPatchParameter[glPatchParameter].#
+
+'''
+
+Current Vertex Attribute Values:
+
+[[gl.vertex_attrib]]
+* *vertex_attrib*(_index_, _type_, _val~1~_, [_val~2~_, _val~3~_, _val~4~_]) +
+[small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', '_double_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
+
+[[gl.vertex_attrib_n]]
+* *vertex_attrib_n*(_index_, _type_, _val~1~_, _val~2~_, _val~3~_, _val~4~_) +
+[small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
+
+
+[[gl.vertex_attrib_p]]
+* *vertex_attrib_p*(_index_, _type_, _normalized_, _val~1~_, _val~2~_, _val~3~_, _val~4~_) +
+[small]#_type_: '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', '_uint 10f 11f 11f rev_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
+

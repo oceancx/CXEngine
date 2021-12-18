@@ -1,0 +1,108 @@
+
+== Preface
+
+This is the reference manual of *MoonGL*, which is a 
+http://www.lua.org[*Lua*] binding library for 
+https://www.opengl.org/[*OpenGL*].
+footnote:[
+This manual is written in
+http://www.methods.co.nz/asciidoc/[AsciiDoc], rendered with
+http://asciidoctor.org/[AsciiDoctor] and a CSS from the
+https://github.com/asciidoctor/asciidoctor-stylesheet-factory[AsciiDoctor Stylesheet Factory].
+The PDF version is produced with
+https://github.com/asciidoctor/asciidoctor-pdf[AsciiDoctor-Pdf].]
+
+It is assumed that the reader is familiar with both OpenGL and the Lua programming language.
+
+For convenience of reference, this document contains external (deep) links to the 
+http://www.lua.org/manual/5.3/manual.html[Lua Reference Manual] and the 
+https://www.opengl.org/sdk/docs[OpenGL Documentation].
+
+=== Getting and installing
+
+For installation intructions, refer to the README file in the 
+https://github.com/stetre/moongl[*MoonGL official repository*]
+on GitHub.
+
+////
+The *official repository* of MoonGL is on GitHub at the following link:
+*https://github.com/stetre/moongl* .
+
+MoonGL runs on GNU/Linux and requires 
+*http://www.lua.org[Lua]* version 5.3 or greater, 
+*https://www.opengl.org/[OpenGL]* (>=3.3), and
+*http://glew.sourceforge.net/[GLEW]*.
+
+To install MoonGL, download the 
+https://github.com/stetre/moongl/releases[latest release] and do the following:
+
+[source,shell]
+----
+# ... download moongl-0.1.tar.gz ...
+[ ]$ tar -zxpvf moongl-0.1.tar.gz
+[ ]$ cd moongl-0.1
+[moongl-0.1]$ make
+[moongl-0.1]$ make check
+[moongl-0.1]$ sudo make install
+----
+
+The _$make check_ command shows you what will be installed and where (please read
+its output before executing _$make install_).
+By default, MoonGL installs its components in subdirectories of `/usr/local/`
+(and creates such directories, if needed).
+This behaviour can be changed by defining PREFIX with the desired alternative 
+base installation directory. For example, this will install the components
+in `/home/joe/local`:
+
+[source,shell]
+----
+[moongl-0.1]$ make
+[moongl-0.1]$ make install PREFIX=/home/joe/local
+----
+
+NOTE: At the time of this writing, I have compiled and used this software only on Ubuntu 15
+with OpenGL 3.3.0 (NVIDIA 340.96). Most functions are not tested, and will be only when
+(and if) I'll discover that I need them. 
+There may be issues when compiling against implementations of OpenGL versions newer than
+the one mentioned above. In particular, I expect problems with version 4.5 due to 
+https://www.khronos.org/bugzilla/show_bug.cgi?id=1394[this bug] (for a workaround,
+look in the file src/whole_framebuffer.c). Any feedback is welcome.
+////
+
+=== Module organization
+
+The MoonGL module is loaded using Lua's 
+http://www.lua.org/manual/5.3/manual.html#pdf-require[require]() and
+returns a table containing the functions it provides 
+(as usual with Lua modules). This manual assumes that such
+table is named *gl*, i.e. that it is loaded with:
+
+[source,lua,indent=1]
+----
+gl = require("moongl")
+----
+
+but nothing forbids the use of a different name.
+
+=== Examples
+
+This manual contains a <<_code_snippets, code snippets section>> where short incomplete
+examples show how to use MoonGL functions.
+
+Complete examples can be found in the *examples/* directory of the release package.
+
+=== License
+
+MoonGL is released under the *MIT/X11 license* (same as
+http://www.lua.org/license.html[Lua], and with the same only requirement to give proper
+credits to the original author). 
+The copyright notice is in the LICENSE file in the base directory
+of the https://github.com/stetre/moongl[official repository] on GitHub.
+
+[[see-also]]
+=== See also
+
+MoonGL is part of https://github.com/stetre/moonlibs[MoonLibs], a collection of 
+Lua libraries for graphics and audio programming.
+
+<<<

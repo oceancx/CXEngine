@@ -1,0 +1,89 @@
+{
+  "name": "luadbgadapter",
+  "displayName": "CXLuaDebugger",
+  "version": "0.5.2",
+  "publisher": "oceancx",
+  "author": {
+    "name": "oceancx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:oceancx/luadebugger.git"
+  },
+  "license": "MIT",
+  "scripts": {},
+  "engines": {
+    "vscode": "^1.0.0",
+    "node": "^4.1.1"
+  },
+  "categories": [
+    "Debuggers"
+  ],
+  "private": true,
+  "devDependencies": {},
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "cxlua",
+        "label": "CXLua",
+        "enableBreakpointsFor": {
+          "languageIds": [
+            "lua"
+          ]
+        },
+        "program": "./vsdbgadapter.exe",
+        "args": [ "--port=0" ],
+        "initialConfigurations": [
+          {
+            "name": "Launch",
+            "type": "cxlua",
+            "request": "launch",
+            "ip": "127.0.0.1",
+            "port": 9527,
+            "program": ".exe",
+            "args": [],
+            "cwd":"${workspaceFolder}\\"
+          },
+          {
+            "name": "Attach",
+            "type": "cxlua",
+            "request": "attach",
+            "ip": "127.0.0.1",
+            "port": 9527,
+            "cwd":"${workspaceFolder}\\"
+          }
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "required": [ "ip", "port" ],
+            "properties": {
+              "program": {
+                "type": "string"
+              },
+              "ip": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "cwd" :{
+                "type" : "string"
+              }
+            }
+          },
+          "attach": {
+            "required": [ "port" ],
+            "properties": {
+              "ip": {
+                "type": "string"
+              },
+              "port": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+[submodule "internals/NESupport"]
+	path = internals/NESupport
+	url = https://github.com/oceancx/NESupport.git
+	branch = master
+[submodule "internals/nlohmann"]
+	path = internals/nlohmann
+	url = https://github.com/oceancx/nlohmann.git
+	branch = master
+[submodule "internals/ezio-cmake"]
+	path = internals/ezio-cmake
+	url = https://github.com/oceancx/ezio-cmake.git
+	branch = master
+[submodule "internals/imgui"]
+	path = internals/imgui
+	url = https://github.com/oceancx/imgui.git
+	branch = master
+[submodule "internals/kbase-cmake"]
+	path = internals/kbase-cmake
+	url = https://github.com/oceancx/kbase-cmake.git
+	branch = master
+[submodule "internals/lua-cmake"]
+	path = internals/lua-cmake
+	url = https://github.com/oceancx/lua-cmake.git
+	branch = master
+[submodule "internals/luacjson-cmake"]
+	path = internals/luacjson-cmake
+	url = https://github.com/oceancx/luacjson-cmake.git
+	branch = master
+[submodule "externals/glew-cmake"]
+	path = externals/glew-cmake
+	url = https://github.com/oceancx/glew-cmake.git
+	branch = master
+[submodule "externals/glm"]
+	path = externals/glm
+	url = https://github.com/oceancx/glm.git
+	branch = master
+[submodule "externals/freetype"]
+	path = externals/freetype
+	url = https://github.com/oceancx/freetype.git
+	branch = master
+[submodule "externals/glfw"]
+	path = externals/glfw
+	url = https://github.com/oceancx/glfw.git
+	branch = master
+[submodule "externals/SOIL"]
+	path = externals/SOIL
+	url = https://github.com/oceancx/SOIL.git
+	branch = master
+[submodule "internals/cxlua"]
+	path = internals/cxlua
+	url = https://github.com/oceancx/cxlua.git
+	branch = master
+[submodule "internals/luadebugger"]
+	path = internals/luadebugger
+	url = https://github.com/oceancx/luadebugger.git
+	branch = master
+[submodule "externals/plogg"]
+	path = externals/plogg
+	url = https://github.com/oceancx/plogg.git
+[submodule "internals/gsm-cmake"]
+	path = internals/gsm-cmake
+	url = https://github.com/oceancx/gsm-cmake.git
+[submodule "internals/miniaudio-cmake"]
+	path = internals/miniaudio-cmake
+	url = https://github.com/oceancx/miniaudio-cmake.git
+[submodule "internals/nanovg"]
+	path = internals/nanovg
+	url = https://github.com/oceancx/nanovg
+[submodule "internals/ejoy2d"]
+	path = internals/ejoy2d
+	url = https://github.com/oceancx/ejoy2d.git
+[submodule "internals/moongl"]
+	path = internals/moongl
+	url = https://github.com/oceancx/moongl.git
+[submodule "internals/asio"]
+	path = internals/asio
+	url = https://github.com/oceancx/asio
+[submodule "internals/kcp"]
+	path = internals/kcp
+	url = https://github.com/oceancx/kcp-cmake.git

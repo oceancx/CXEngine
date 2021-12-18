@@ -1,0 +1,10 @@
+ios/example/example.xcodeproj/project.xcworkspace/
+build/
+ios/example/example.xcodeproj/xcuserdata/
+ej2d
+ej2d.dSYM/*
+*.exe
+*.dll
+*.ilk
+mac/example/example.xcodeproj/xcuserdata
+mac/example/example.xcodeproj/project.xcworkspace/xcuserdata

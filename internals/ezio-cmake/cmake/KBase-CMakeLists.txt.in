@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.5.0)
+
+project(kbase-download NONE)
+include(ExternalProject)
+ExternalProject_Add(KBase
+  GIT_REPOSITORY    https://github.com/oceancx/kbase-cmake.git
+  GIT_TAG           master
+  SOURCE_DIR        ${CMAKE_BINARY_DIR}/kbase-cmake
+  BINARY_DIR        ${CMAKE_BINARY_DIR}/kbase-cmake/build
+  CMAKE_ARGS
+      -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/install
+)

@@ -1,0 +1,52 @@
+
+== Common data types
+
+[[color]]
+[small]#*color*: {float}[4] (normalized rgba components).#
+
+[[data]]
+[small]#*data*: binary string.#
+
+[[dataptr]]
+[small]#*dataptr*: {ptr, size}, where _ptr_ is a lightuserdata containing a raw pointer to _size_ bytes of memory.#
+
+== Enumerations
+
+[[buffertarget]]
+[small]#*buffer target*: 
+'_array_', '_uniform_', '_atomic counter_', '_query_', '_copy read_', '_copy write_', '_dispatch indirect_', '_draw indirect_', '_element array_', '_texture_', '_pixel pack_', '_pixel unpack_', '_shader storage_', '_transform feedback_'.#
+
+[[capability]]
+[small]#*capability*: 
+'_blend_', '_clip distance 0_' .. '_clip distance 7_', '_color logic op_', '_cull face_', '_debug output_', '_debug output synchronous_', '_depth clamp_', '_depth test_', '_dither_', '_framebuffer srgb_', '_line smooth_', '_multisample_', '_polygon offset fill_', '_polygon offset line_', '_polygon offset point_', '_polygon smooth_', '_primitive restart_', '_primitive restart fixed index_', '_rasterizer discard_', '_sample alpha to coverage_', '_sample alpha to one_', '_sample coverage_', '_sample shading_', '_sample mask_', '_scissor test_', '_stencil test_', '_texture cube map seamless_', '_program point size_'.#
+
+[[format]]
+[small]#*format*: '_rgb_' for GL_RGB, '_depth component_' for GL_DEPTH_COMPONENT, etc.#
+
+[[framebuffertarget]]
+[small]#*framebuffer target*: '_draw_', '_read_', or '_draw read_' (for GL_FRAMEBUFFER).#
+
+[[glsltype]]
+[small]#*glsltype*: '_float_', '_vec2_', '_vec3_', '_vec4_', '_double_', '_dvec2_', '_dvec3_', '_dvec4_', '_int_', '_ivec2_', '_ivec3_', '_ivec4_', '_uint_', '_uvec2_', '_uvec3_', '_uvec4_', '_bool_', '_bvec2_', '_bvec3_', '_bvec4_', '_mat2_', '_mat3_', '_mat4_', '_mat2x3_', '_mat2x4_', '_mat3x2_', '_mat3x4_', '_mat4x2_', '_mat4x3_', '_dmat2_', '_dmat3_', '_dmat4_', '_dmat2x3_', '_dmat2x4_', '_dmat3x2_', '_dmat3x4_', '_dmat4x2_', '_dmat4x3_', '_sampler1D_', '_sampler2D_', '_sampler3D_', '_samplerCube_', '_sampler1DShadow_', '_sampler2DShadow_', '_sampler1DArray_', '_sampler2DArray_', '_sampler1DArrayShadow_', '_sampler2DArrayShadow_', '_sampler2DMS_', '_sampler2DMSArray_', '_samplerCubeShadow_', '_samplerBuffer_', '_sampler2DRect_', '_sampler2DRectShadow_', '_isampler1D_', '_isampler2D_', '_isampler3D_', '_isamplerCube_', '_isampler1DArray_', '_isampler2DArray_', '_isampler2DMS_', '_isampler2DMSArray_', '_isamplerBuffer_', '_isampler2DRect_', '_usampler1D_', '_usampler2D_', '_usampler3D_', '_usamplerCube_', '_usampler2DArray_', '_usampler2DArray_', '_usampler2DMS_', '_usampler2DMSArray_', '_usamplerBuffer_', '_usampler2DRect_', '_image1D_', '_image2D_', '_image3D_', '_image2DRect_', '_imageCube_', '_imageBuffer_', '_image1DArray_', '_image2DArray_', '_image2DMS_', '_image2DMSArray_', '_iimage1D_', '_iimage2D_', '_iimage3D_', '_iimage2DRect_', '_iimageCube_', '_iimageBuffer_', '_iimage1DArray_', '_iimage2DArray_', '_iimage2DMS_', '_iimage2DMSArray_', '_uimage1D_', '_uimage2D_', '_uimage3D_', '_uimage2DRect_', '_uimageCube_', '_uimageBuffer_', '_uimage1DArray_', '_uimage2DArray_', '_uimage2DMS_', '_uimage2DMSArray_', '_atomic_uint_'.#
+
+[[intformat]]
+[small]#*intformat*: '_rgb_' for GL_RGB, '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
+Values: '_none_', '_stencil index_', '_depth component_', '_depth stencil_', '_red_', '_rg_', '_rgb_', '_rgba_', '_r8_', '_r8 snorm_', '_r16_', '_r16 snorm_', '_rg8_', '_rg8 snorm_', '_rg16_', '_rg16 snorm_', '_r3 g3 b2_', '_rgb4_', '_rgb5_', '_rgb8_', '_rgb8 snorm_', '_rgb10_', '_rgb12_', '_rgb16 snorm_', '_rgba2_', '_rgba4_', '_rgb5 a1_', '_rgba8_', '_rgba8 snorm_', '_rgb10 a2_', '_rgb10 a2ui_', '_rgba12_', '_rgba16_', '_srgb8_', '_srgb8 alpha8_', '_r16f_', '_rg16f_', '_rgb16f_', '_rgba16f_', '_r32f_', '_rg32f_', '_rgb32f_', '_rgba32f_', '_r11f g11f b10f_', '_rgb9 e5_', '_r8i_', '_r8ui_', '_r16i_', '_r16ui_', '_r32i_', '_r32ui_', '_rg8i_', '_rg8ui_', '_rg16i_', '_rg16ui_', '_rg32i_', '_rg32ui_', '_rgb8i_', '_rgb8ui_', '_rgb16i_', '_rgb16ui_', '_rgb32i_', '_rgb32ui_', '_rgba8i_', '_rgba8ui_', '_rgba16i_', '_rgba16ui_', '_rgba32i_', '_rgba32ui_', '_depth component16_', '_depth component24_', '_depth component32_', '_depth component32f_', '_depth24 stencil8_', '_depth32f stencil8_', '_stencil index8_', '_compressed red_', '_compressed rg_', '_compressed rgb_', '_compressed rgba_', '_compressed srgb_', '_compressed srgb alpha_', '_compressed red rgtc1_', '_compressed signed red rgtc1_', '_compressed rg rgtc2_', '_compressed signed rg rgtc2_', '_compressed rgba bptc unorm_', '_compressed srgb alpha bptc unorm_', '_compressed rgb bptc signed float_', '_compressed rgb bptc unsigned float_', '_compressed rgb s3tc dxt1 ext_', '_compressed srgb s3tc dxt1 ext_', '_compressed rgba s3tc dxt1 ext_', '_compressed srgb alpha s3tc dxt1 ext_', '_compressed rgba s3tc dxt3 ext_', '_compressed srgb alpha s3tc dxt3 ext_', '_compressed rgba s3tc dxt5 ext_', '_compressed srgb alpha s3tc dxt5 ext_'.#
+
+[[shaderbinaryformat]]
+[small]#*shaderbinaryformat*: '_spir v_'.#
+
+[[shadertype]]
+[small]#*shadertype*: '_vertex_', '_fragment_', '_geometry_', '_tess evaluation_', '_tess control_', '_compute_'.#
+
+[[renderbuffertarget]]
+[small]#*renderbuffer target*: '_renderbuffer_'.#
+
+[[texturetarget]]
+[small]#*texture target*: '_1d_', '_2d_', '_3d_', '_1d array_', '_2d array_', '_rectangle_', '_cube map_', '_cube map array_', '_2d multisample_', '_2d multisample array_', '_cube map positive x_', '_cube map positive y_', '_cube map positive z_', '_cube map negative x_', '_cube map negative y_', '_cube map negative z_', '_proxy 1d_', '_proxy 2d_', '_proxy 3d_', '_proxy 1d array_', '_proxy 2d array_', '_proxy rectangle_', '_proxy cube map_', '_proxy cube map array_', '_proxy 2d multisample_', '_proxy 2d multisample array_', '_buffer_', '_renderbuffer_'.#
+
+[[type]]
+[small]#*type*: '_none_', '_ubyte_', '_byte_', '_ushort_', '_short_', '_uint_', '_int_', '_fixed_', '_half float_', '_float_', '_double_', '_ubyte 3 3 2_', '_ubyte 2 3 3 rev_', '_ushort 5 6 5_', '_ushort 5 6 5 rev_', '_ushort 4 4 4 4_', '_ushort 4 4 4 4 rev_', '_ushort 5 5 5 1_', '_ushort 1 5 5 5 rev_', '_uint 8 8 8 8_', '_uint 8 8 8 8 rev_', '_uint 10 10 10 2_', '_uint 2 10 10 10 rev_', '_uint 24 8_', '_uint 10f 11f 11f rev_', '_uint 5 9 9 9 rev_', '_float 32 uint 24 8 rev_', '_int 2 10 10 10 rev_'.#
+
+<<<
+

@@ -1,0 +1,47 @@
+
+== Initialization
+
+[[gl.init]]
+* *init*( ) +
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewInit](). 
+This function *must* be called as soon as a GL context is obtained and made current, and
+*before calling any other MoonGL function* 
+(since it initializes OpenGL's function pointers, failing to do so would likely cause a
+segmentation fault). +
+See <<snippet_init, example>>.#
+
+* _boolean_ = *is_supported*(_string_) +
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).# 
+[small]#See <<snippet_is_supported, example>>.#
+
+* _string_ = *version*( ) +
+[small]#Returns a string describing the latest *OpenGL version* supported by the combination of
+MoonGL, GLEW, and the OpenGL implementation being used (e.g. '_OpenGL 4.5_').
+This function can be used only after initialization. +
+(Note that the <<gl.get, get>>() function returns the version supported by the OpenGL implementation
+being used, which may differ from the version returned by this function).#
+
+* The *gl* table contains the following fields for version information: +
+[small]#pass:[-] *pass:[gl._VERSION]*: a string describing the *MoonGL version* (e.g. '_MoonGL 0.4_'), and +
+pass:[-] *pass:[gl._GLEW_VERSION]*: a string describing the *GLEW version* (e.g. '_GLEW 1.13.0_').#
+
+== Command Execution
+
+
+[[gl.get_graphics_reset_status]]
+* _status_ = *get_graphics_reset_status*( ) +
+[small]#_status_: '_no error_' for GL_NO_ERROR, '_guilty context reset_' for GL_GUILTY_CONTEXT_RESET, etc.# +
+[small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml[glGetGraphicsResetStatus].#
+
+* <<gl.get, get>>
+
+[[gl.flush]]
+* *flush*( ) +
+*finish*( ) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlush[glFlush] -
+https://www.khronos.org/opengl/wiki/GLAPI/glFinish[glFinish].#
+
+NOTE: The *glGetError*(&nbsp;) function is not exposed. It is used internally by MoonGL, 
+that checks for errors each time it executes an OpenGL command and raises
+an error if the command did not succeed.
+

@@ -1,0 +1,63 @@
+= MoonGL Reference Manual
+Stefano Trettel
+v0.6, 2018-10-04
+:toc: left
+:toclevels: 2
+:stylesdir: ./
+:stylesheet: colony.css
+:source-highlighter: pygments
+:pygments-style: autumn
+:source-language: lua
+:exampledir: ../examples
+
+image::powered-by-lua.gif[Lua logo, link=http://www.lua.org]
+
+include::preface.adoc[]
+
+include::introduction.adoc[]
+
+include::command_execution.adoc[]
+
+include::synchronization.adoc[]
+
+include::queries.adoc[]
+
+include::buffer_objects.adoc[]
+
+include::shaders_and_programs.adoc[]
+
+include::textures_and_samplers.adoc[]
+
+include::framebuffer_objects.adoc[]
+
+include::vertices.adoc[]
+
+include::vertex_arrays.adoc[]
+
+include::vertex_attributes.adoc[]
+
+include::vertex_post_processing.adoc[]
+
+include::rasterization.adoc[]
+
+include::fragment_shaders.adoc[]
+
+include::compute_shaders.adoc[]
+
+include::per_fragment_operations.adoc[]
+
+include::hints.adoc[]
+
+include::whole_framebuffer.adoc[]
+
+include::reading_and_copying_pixels.adoc[]
+
+include::debug_output.adoc[]
+
+include::state_and_state_requests.adoc[]
+
+include::data_handling.adoc[]
+
+include::enumerations.adoc[]
+
+include::snippets.adoc[]

@@ -1,0 +1,46 @@
+
+== Vertex Attributes
+
+Attribute Location:
+
+[[gl.bind_attrib_location]]
+* *bind_attrib_location*(_program_, _index_, _name_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindAttribLocation[glBindAttribLocation].#
+
+[[gl.get_active_attrib]]
+* _name_, <<glsltype, _glsltype_>>, _size_ = *get_active_attrib*(_program_, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveAttrib[glGetActiveAttrib].#
+
+[[gl.get_attrib_location]]
+* _location_ = *get_attrib_location*(_program_, _name_) +
+[small]#Don't use this function, use <<gl.bind_attrib_location,bind_attrib_location>>( ) 
+instead. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetAttribLocation[glGetAttribLocation].#
+// see:  https://youtu.be/IXxc9yNBpuo?t=3073
+
+'''
+
+Transform Feedback Variables:
+
+[[gl.transform_feedback_varyings]]
+* *transform_feedback_varyings*(_program_, _mode_, _varying~1~_, [_varying~2~_, _..._ ]) +
+[small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glTransformFeedbackVaryings[glTransformFeedbackVaryings].#
+
+[[gl.get_transform_feedback_varying]]
+* _name_, <<glsltype, _glsltype_>>, _size_ = *get_transform_feedback_varying*(_program_, _index_) +
+[small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVarying[glGetTransformFeedbackVarying].#
+
+'''
+
+Shader Execution:
+
+[[gl.validate_program]]
+* *validate_program*(_program_) +
+*validate_program_pipeline*(_pipeline_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glValidateProgram[glValidateProgram] -
+https://www.khronos.org/opengl/wiki/GLAPI/glValidateProgramPipeline[glValidateProgramPipeline].#
+
+* <<gl.patch_parameter, patch_parameter>>
+

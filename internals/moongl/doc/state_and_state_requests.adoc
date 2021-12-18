@@ -1,0 +1,58 @@
+
+== State and State Requests
+
+Simple Queries:
+
+[[gl.get]]
+* _value_, _..._ = *get*(_pname_, [_index_]) +
+[small]#_pname_: '_context flags_' for GL_CONTEXT_FLAGS, '_major version_' for GL_MAJOR_VERSION, etc. +
+The _index_ argument may be mandatory or optional, depending on _pname_. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGet[glGet].#
+
+NOTE: An '_invalid enumerant_' error raised by a <<gl.get, get>>( ) call means that the _pname_ is not
+supported by the OpenGL version being used (a mis-spelled _pname_ causes a '_bad argument ..._' error).
+
+[[gl.enable]]
+* *enable*(<<capability, _capability_>>, [_index_]) +
+*disable*(<<capability, _capability_>>, [_index_]) +
+_boolean_ = *is_enabled*(<<capability, _capability_>>, [_index_]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glEnable[glEnable] -
+https://www.khronos.org/opengl/wiki/GLAPI/glIsEnable[glIsEnabled].#
+
+'''
+
+String Queries:
+
+[[gl.get_string]]
+* _value_, _..._ = *get_string*(_pname_, [_index_]) +
+[small]#_pname_: '_renderer_', '_vendor_', '_version_', '_extensions_', '_shading language version_'. +
+The _index_ argument may be mandatory or optional, depending on _pname_. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#
+
+[[gl.get_extensions]]
+* _{extension}_ = *get_extensions*([_byname_]) _NONGL_ +
+_{spir_v_extension}_ = *get_spir_v_extensions*([_byname_]) _NONGL_ +
+[small]#If _byname_ is false (default), returns an array with the names (strings) of all the supported extensions. +
+If _byname_ is true, returns a table of _true_ values indexed with the names of the supported extensions. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#
+
+'''
+
+Internal Format Queries:
+
+[[gl.get_internalformat]]
+* _value_, _..._ = *get_internalformat*(_target_, _intformat_, _pname_) +
+[small]#_target_: '_1d_' for GL_TEXTURE_1D, '_1d array_' for GL_TEXTURE_1D_ARRAY, etc. +
+_intformat_: '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
+_pname_: '_num sample counts_' for GL_NUM_SAMPLE_COUNTS, '_samples_' for GL_SAMPLES, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetInternalformat[glGetInternalformat].#
+
+'''
+
+Transform Feedback Queries:
+
+[[gl.get_transform_feedback]]
+* _value_ = *get_transform_feedback*(_xfb_, _pname_) +
+[small]#_pname_: '_paused_', '_active_', '_buffer binding_', '_buffer start_', '_buffer size_'. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glGetTransformFeedback.xhtml[glGetTransformFeedback].#
+

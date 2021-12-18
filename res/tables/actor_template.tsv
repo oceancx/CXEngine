@@ -1,0 +1,115 @@
+name	type	def	sync
+*			
+*			0
+prop_id	uint64	0	
+prop_dir	int	4	
+prop_race	int	1	1
+prop_school	int	1	1
+prop_school_skill_lv_targethit	int	0	1
+prop_school_skill_lv_damage	int	0	1
+prop_school_skill_lv_defend	int	0	1
+prop_school_skill_lv_speed	int	0	1
+prop_school_skill_lv_dodge	int	0	1
+prop_school_skill_lv_spiritual	int	0	1
+prop_school_skill_lv_hp	int	0	1
+prop_school_skill_lv_mp	int	0	1
+prop_equip_hp	float	0	1
+prop_equip_mp	float	0	1
+prop_equip_target	float	0	1
+prop_equip_damage	float	0	1
+prop_equip_defend	float	0	1
+prop_equip_spiritual	float	0	1
+prop_equip_agile	float	0	1
+prop_auxi_skill_lv_hp	int	0	1
+prop_auxi_skill_lv_mp	int	0	1
+prop_show_boundingbox	bool	false	
+prop_show_avatar_info	bool	false	
+prop_is_autorun	bool	false	
+prop_is_dead	bool	false	
+prop_frame_speed	float	0.080	
+prop_actor_type	int	1	1
+prop_name	str	test	1
+prop_avatar_id	str	JXK-SWORD	1
+prop_weapon_avatar_id	str	JXK-SWORD-060-X	1
+prop_scene_id	int	186	1
+prop_role_id	int	0	
+prop_weapon_id	int	-1	
+prop_weapon_type	int	0	
+prop_action_id	int	0	
+prop_pos	vec2	{0,0}	
+prop_move_to_pos	vec2	{0,0}	
+prop_dir_count	int	8	
+prop_is_move	bool	false	
+prop_move_velocity	float	150	
+prop_can_move	bool	true	
+prop_is_combat	bool	false	0
+prop_target_id	uint64	0	
+prop_cast_id	uint64	0	
+prop_is_calc_move_list	bool	false	
+prop_say_duration	int	0	
+prop_is_local	bool	false	
+prop_combat_pos	vec2	{0,0}	
+prop_combat_dir	int	0	
+prop_combat_backup_pos	vec2	{0,0}	
+prop_combat_target_pos	vec2	{0,0}	
+prop_combat_acting	bool	false	
+prop_combat_battle_id	uint64	0	
+prop_team_type	int	0	1
+prop_team_id	uint64	0	1
+prop_using_skill	uint64	0	
+prop_cast_skill_tid	int	0	
+prop_turn_ready	bool	false	1
+prop_asm_atk_combo	int	1	
+prop_asm_behit_anim	uint64	0	
+prop_asm_damage	float	0	
+prop_asm_heal	float	0	
+prop_asm_buff_anim	uint64	0	
+prop_asm_play_behit	bool	true	
+prop_asm_runto_x	float	0	
+prop_asm_runto_y	float	0	
+prop_hp	float	100	1
+prop_mp	float	100	1
+prop_sp	float	0	1
+prop_lv	int	0	1
+prop_add_prop_plan	str	1,1,1,1,1	1
+prop_exp	float	0	1
+prop_base_force	int	0	1
+prop_base_health	int	0	1
+prop_base_stamina	int	0	1
+prop_base_agility	int	0	1
+prop_base_magic	int	0	1
+prop_summon_take_level	int	0	1
+prop_summon_battle_level	int	0	1
+prop_summon_atk_qual	float	0	1
+prop_summon_def_qual	float	0	1
+prop_summon_health_qual	float	0	1
+prop_summon_magic_qual	float	0	1
+prop_summon_speed_qual	float	0	1
+prop_summon_dodge_qual	float	0	1
+prop_summon_grow_coef	float	0	1
+prop_is_using_skill	bool	false	
+prop_combat_skill_ban_atk	bool	false	0
+prop_combat_skill_ban_spell	bool	false	0
+prop_summon_uids	str	[]	1
+prop_summon_has_owner	bool	false	1
+prop_summon_owner	uint64	0	1
+prop_combat_pos_id	int	0	1
+prop_damage_extra	float	0	1
+prop_defend_extra	float	0	1
+prop_speed_extra	float	0	1
+prop_spiritual_extra	float	0	1
+prop_targethit_extra	float	0	1
+prop_dodge_extra	float	0	1
+prop_assign_force	int	0	1
+prop_assign_health	int	0	1
+prop_assign_stamina	int	0	1
+prop_assign_agility	int	0	1
+prop_assign_magic	int	0	1
+prop_atk_practice_skill_lv	int	0	1
+prop_atk_resistance_skill_lv	int	0	1
+prop_spell_practice_skill_lv	int	0	1
+prop_spell_resistance_skill_lv	int	0	1
+prop_pal_matrix	str	{}	1
+prop_is_auto_command	bool	false	1
+prop_setting_bgm	bool	true	1
+prop_setting_wild_battle	bool	true	1

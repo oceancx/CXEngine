@@ -1,0 +1,8 @@
+Debug/*
+*.log
+*.exe
+luadbgtest_debug.log
+*.dll
+*.exp
+*.lib
+*.log

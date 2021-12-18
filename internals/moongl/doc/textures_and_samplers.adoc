@@ -1,0 +1,320 @@
+
+== Textures and Samplers
+
+Texture units:
+
+[[gl.active_texture]]
+* *active_texture*(_i_) +
+[small]#_i_: 0 for GL_TEXTURE0, 1 for GL_TEXTURE1, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture[glActiveTexture].#
+[small]#See <<snippet_new_texture, example>>.#
+
+[[gl.bind_texture_unit]]
+* *bind_texture_unit*(_unit_, _texture_) +
+[small]#https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glBindTextureUnit.xhtml[glBindTextureUnit].#
+
+''' 
+
+Texture Objects:
+
+[[gl.bind_texture]]
+* _texture_ = *new_texture*(<<texturetarget,_target_>>) _NONGL_ +
+_texture~1~_, _texture~2~_, _..._ = *gen_textures*([_n_ = 1]) +
+_texture~1~_, _texture~2~_, _..._ = *create_textures*(<<texturetarget,_target_>>, [_n_ = 1]) +
+*bind_texture*(<<texturetarget,_target_>>, [_texture_]) +
+*bind_textures*(_first_, _texture~1~_, [_texture~2~_, _..._ ]) +
+*unbind_texture*(<<texturetarget,_target_>>) _NONGL_ +
+*delete_textures*(_texture~1~_, [_texture~2~_, _..._]) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGenTextures[glGenTextures] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindTexture[glBindTexture] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindTextures[glBindTextures] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteTextures[glDeleteTextures].#
+[small]#See <<snippet_new_texture, example>>.#
+
+
+////
+[[gl.is_texture]]
+* _boolean_ = *is_texture*( ) useless
+////
+
+'''
+
+Sampler Objects
+
+[[gl.bind_sampler]]
+* _sampler_ = *new_sampler*(_unit_) _NONGL_ +
+_sampler~1~_, _sampler~2~_, _..._ = *gen_samplers*([_n_ = 1]) +
+_sampler~1~_, _sampler~2~_, _..._ = *create_samplers*([_n_ = 1]) +
+*bind_sampler*(_unit_, [_sampler_]) +
+*bind_samplers*(_first_, _sampler~1~_, [_sampler~2~_, _..._]) +
+*unbind_sampler*(_unit_) _NONGL_ +
+*delete_samplers*(_sampler~1~_, [_sampler~2~_, _..._]) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGenSamplers[glGenSamplers] - 
+https://www.khronos.org/opengl/wiki/GLAPI/glBindSampler[glBindSampler] - 
+https://www.khronos.org/opengl/wiki/GLAPI/glBindSamplers[glBindSamplers] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteSamplers[glDeleteSamplers].#
+
+
+////
+[[gl.is_sampler]]
+* _boolean_ = *is_sampler*(_sampler_) useless
+////
+
+[[gl.sampler_parameter]]
+* *sampler_parameter*(_sampler_, _pname_, _val~1~_, [_val~2~_, _..._]) +
+[small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSamplerParameter[glSamplerParameter].#
+
+[[gl.get_sampler_parameter]]
+* _value_, _..._ = *get_sampler_parameter*(_sampler_, _pname_) +
+[small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter[glGetSamplerParameter].#
+
+'''
+
+Texture Image Spec.:
+
+[[gl.texture_image]]
+* *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _width_)  1D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _width_, _height_)  2D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _width_, _height_, _depth_) 3D +
+[small]#If a <<gl.bind_buffer, buffer>> is bound to the '_pixel unpack_' target, then an integer _offset_ parameter must be passed (in this case OpenGL gets the data from that buffer at the given offset).
+Otherwise the data may be passed either as a binary string or a pointer, or as _nil_ for no pixel transfer. +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D[glTexImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexImage2D[glTexImage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexImage3D[glTexImage3D].#
+[small]#See <<snippet_new_texture, example>>.#
+
+'''
+
+Alternate Texture Image Spec.:
+
+[[gl.copy_texture_image]]
+* *copy_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_) 1D +
+*copy_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_, _height_) 2D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexImage1D[glCopyTexImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexImage2D[glCopyTexImage2D].#
+
+
+[[gl.texture_sub_image]]
+* *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _xofs_, _width_) 1D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _xofs_, _yofs_, _width_, _height_) 2D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>|_offset_], _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
+[small]#_data_|_dataptr_|_offset_: see <<gl.texture_image, gl.texture_image>>(&nbsp;). +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D[glTexSubImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage2D[glTexSubImage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage3D[glTexSubImage3D].#
+
+[[gl.copy_texture_sub_image]]
+* *copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _x_, _y_, _width_) 1D +
+*copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _x_, _y_, _width_, _height_) 2D +
+*copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _zofs_, _x_, _y_, _width_, _height_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexSubImage1D[glCopyTexSubImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexSubImage2D[glCopyTexSubImage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexSubImage3D[glCopyTexSubImage3D].#
+
+'''
+
+Compressed Texture Images:
+
+[[gl.compressed_texture_image]]
+* *compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _width_) 1D +
+*compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _width_, _height_) 2D +
+*compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _width_, _height_, _depth_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexImage1D[glCompressedTexImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexImage2D[glCompressedTexImage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexImage3D[glCompressedTexImage3D].#
+
+[[gl.compressed_texture_sub_image]]
+* *compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _xofs_, _width_) 1D +
+*compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _xofs_, _yofs_, _width_, _height_) 2D +
+*compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>|<<dataptr, _dataptr_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexSubImage1D[glCompressedTexSubImage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexSubImage2D[glCompressedTexSubImage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexSubImage3D[glCompressedTexSubImage3D].#
+
+'''
+
+Multisample Textures:
+
+[[gl.texture_image_multisample]]
+* *texture_image_multisample*(<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 2D +
+*texture_image_multisample*(<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_, _height_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexImage2DMultisample[glTexImage2DMultisample] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexImage3DMultisample[glTexImage3DMultisample].#
+
+'''
+
+Buffer Textures:
+
+[[gl.texture_buffer_range]]
+* *texture_buffer_range*(<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_, _offset_, _size_) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexBufferRange[glTexBufferRange].#
+
+[[gl.texture_buffer]]
+* *texture_buffer*(<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexBuffer[glTexBuffer].#
+
+''' 
+
+Invalidate/Clear Texture Image Data:
+
+[[gl.invalidate_texture_image]]
+* *invalidate_texture_image*(_texture_, _level_) +
+*invalidate_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexImage[glInvalidateTexImage] -
+https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexSubImage[glInvalidateTexSubImage].#
+
+[[gl.clear_texture_image]]
+* *clear_texture_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>]) +
+*clear_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>], _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
+[small]#Rfr:
+https://www.khronos.org/opengl/wiki/GLAPI/glClearTexImage[glClearTexImage] -
+https://www.khronos.org/opengl/wiki/GLAPI/glClearTexSubImage[glClearTexSubImage].#
+
+
+'''
+
+Texture Parameters
+
+[[gl.texture_parameter]]
+* *texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_, _val~1~_, _..._) +
+[small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glTexParameter[glTexParameter].#
+[small]#See <<snippet_new_texture, example>>.#
+
+'''
+
+Texture Queries
+
+[[gl.get_texture_parameter]]
+* _value_, _..._ = *get_texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_) +
+[small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGetTexParameter[glGetTexParameter].#
+
+[[gl.get_texture_level_parameter]]
+* _value_ = *get_texture_level_parameter*(<<texturetarget,_target_>>|_texture_, _level_, _pname_) +
+[small]#_pname_: '_width_' for GL_TEXTURE_WIDTH, '_fixed sample locations_' for GL_TEXTURE_FIXED_SAMPLE_LOCATIONS, etc. +
+Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
+
+[[gl.get_texture_image]]
+* <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>>, _n_) +
+[small]#_n_: data size or offset in buffer. +
+If a <<gl.bind_buffer, buffer>> is bound to the '_pixel pack_' target, then _n_ is
+interpreted as an offset and this function returns _nil_ (in this case OpenGL copies
+the data to that buffer at the given offset).
+Otherwise _n_ must be the size in bytes of the expected data, which this function returns as a binary string. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage[glGetTexImage].#
+
+[[gl.get_texture_sub_image]]
+* <<data,_data_>> = *get_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_, _n_) +
+[small]#_n_: data size. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml[glGetTextureSubImage].#
+
+////
+[[gl.getn_texture_image]]
+* *getn_texture_image*(<<texturetarget,_target_>>, _level_, <<format, _format_>>, <<type,_type_>>) +
+<<data,_data_>> +
+[small]#Rfr: 
+https://www.opengl.org/sdk/docs/man/html/glGetTexImage.xhtml[glGetTexImage].#
+////
+
+[[gl.get_compressed_texture_image]]
+* <<data,_data_>> =
+*get_compressed_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, _n_) +
+<<data,_data_>> = *get_compressed_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_, _n_) +
+[small]#_n_: data size. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetCompressedTexImage[glGetCompressedTexImage] -
+https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml[glGetCompressedTextureSubImage].#
+
+////
+[[gl.getn_compressed_texture_image]]
+* *getn_compressed_texture_image*(<<texturetarget,_target_>>, _level_) +
+<<data,_data_>> +
+[small]#Rfr: 
+https://www.opengl.org/sdk/docs/man/html/glGetnCompressedTexImage.xhtml[glGetnCompressedTexImage].#
+////
+
+'''
+
+Pixel Storage Modes:
+
+[[gl.pixel_store]]
+* *pixel_store*(_pname_, _val_) +
+[small]#_pname_: '_unpack swap bytes_' for GL_UNPACK_SWAP_BYTES, '_unpack lsb first_' for GL_UNPACK_LSB_FIRST, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPixelStore[glPixelStore].#
+
+'''
+
+Cube Map Texture Select:
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+'''
+
+Manual Mipmap Generation:
+
+[[gl.generate_mipmap]]
+* *generate_mipmap*(<<texturetarget,_target_>>|_texture_) +
+[small]#Rfr: 
+https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml[glGenerateMipmap].#
+[small]#See <<snippet_new_texture, example>>.#
+
+'''
+
+Texture Views:
+
+[[gl.texture_view]]
+* *texture_view*(_texture_, <<texturetarget,_target_>>, _origtexture_, <<intformat,_intformat_>>, _minlevel_, _numlevels_, _minlayer_, _numlayers_) +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTextureView[glTextureView].#
+
+'''
+
+Immutable-Format Tex. Images:
+
+[[gl.texture_storage]]
+* *texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_) 1D +
+*texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_) 2D +
+*texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_, _depth_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexStorage1D[glTexStorage1D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexStorage2D[glTexStorage2D] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexStorage3D[glTexStorage3D].#
+
+[[gl.texture_storage_multisample]]
+* *texture_storage_multisample*(<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_) 2D +
+*texture_storage_multisample*(<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 3D +
+[small]#Rfr: 
+https://www.khronos.org/opengl/wiki/GLAPI/glTexStorage2DMultisample[glTexStorage2DMultisample] -
+https://www.khronos.org/opengl/wiki/GLAPI/glTexStorage3DMultisample[glTexStorage3DMultisample].#
+
+'''
+
+Texture Image Loads/Stores:
+
+[[gl.bind_image_texture]]
+* *bind_image_texture*(_unit_, _texture_, _level_, _layered_, _layer_, _access_, <<intformat,_intformat_>>) +
+[small]#_access_: '_read only_', '_write only_', '_read write_'. +
+Rfr:
+https://www.khronos.org/opengl/wiki/GLAPI/glBindImageTexture[glBindImageTexture].#
+
+[[gl.bind_image_textures]]
+* *bind_image_textures*(_first_, _texture~1~_, [_texture~2~_, _..._]) +
+[small]#Rfr:
+https://www.khronos.org/opengl/wiki/GLAPI/glBindImageTextures[glBindImageTextures].#
+

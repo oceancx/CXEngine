@@ -1,0 +1,11 @@
+
+== Compute Shaders
+
+[[gl.dispatch_compute]]
+* *dispatch_compute*(_numx_, _numy_, _numz_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute[glDispatchCompute].#
+
+[[gl.dispatch_compute_indirect]]
+* *dispatch_compute_indirect*(_indirect_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDispatchComputeIndirect[glDispatchComputeIndirect].#
+

@@ -1,0 +1,27 @@
+
+
+
+set(SRC_CPP_FILES 
+)
+
+set(SRC_EXTERNAL_CPP_FILES
+../../external/NESupport/src/NESupport.cpp
+../../common/any.h
+../../common/debug_protocol.h
+../../common/lua_bind.h
+../../common/pos.h
+../../common/protocol.h
+)
+
+add_executable(${PROJECT_NAME}
+${SRC_CPP_FILES}
+${SRC_EXTERNAL_CPP_FILES}
+)
+
+
+target_link_libraries(${PROJECT_NAME}
+  ezio
+  kbase
+  ${LUA_STATIC}
+  ${LUA_SOCKET}
+)

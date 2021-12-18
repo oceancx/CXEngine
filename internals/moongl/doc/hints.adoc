@@ -1,0 +1,10 @@
+
+== Hints
+
+[[gl.hint]]
+* *hint*(_target_, _hint_) +
+[small]#_target_: '_line smooth_', '_polygon smooth_', '_texture compression_', '_fragment shader derivative_'. +
+_hint_: '_fastest_', '_nicest_', '_don't care_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glHint[glHint].#
+
+

@@ -1,0 +1,66 @@
+
+== Debug Output
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+'''
+
+Debug Message Callbacks:
+
+[[gl.debug_message_callback]]
+* *debug_message_callback*(_func_) +
+[small]#The _func_ callback is executed as *_func(source, type, id, severity, message)_*. +
+_source_: '_api_' for GL_DEBUG_SOURCE_API, '_shader compiler_' for GL_DEBUG_SOURCE_SHADER_COMPILER, etc. +
+_type_: '_error_' for GL_DEBUG_TYPE_ERROR, '_deprecated behavior_' for GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR, etc. +
+_severity_: '_high_', '_medium_', '_low_', '_notification_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageCallback[glDebugMessageCallback].#
+
+'''
+
+Controlling Debug Messages:
+
+[[gl.debug_message_control]]
+* *debug_message_control*(_source_, _type_, _severity_, _enabled_, [_id~1~_, _..._]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageControl[glDebugMessageControl].#
+
+'''
+
+Externally Generated Messages:
+
+[[gl.debug_message_insert]]
+* *debug_message_insert*(_source_, _type_, _severity_, _id_, _message_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageInsert[glDebugMessageInsert].#
+
+'''
+
+Debug Groups:
+
+[[gl.push_debug_group]]
+* *push_debug_group*(_source_, _id_, _message_) +
+*pop_debug_group*( ) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPushDebugGroup[glPushDebugGroup] -
+https://www.khronos.org/opengl/wiki/GLAPI/glPopDebugGroup[glPopDebugGroup].#
+
+'''
+
+Debug Labels:
+
+[[gl.object_label]]
+* *object_label*(_identifier_, _name_, _label_) +
+[small]#_identifier_: '_buffer_' for GL_BUFFER, '_vertex array_' for GL_VERTEX_ARRAY, etc. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glObjectLabel[glObjectLabel].#
+
+'''
+
+Synchronous Debug Output:
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+'''
+
+DebugOutput Queries:
+
+[[gl.get_object_label]]
+* _label_ = *get_object_label*(_identifier_, _name_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetObjectLabel[glGetObjectLabel].#
+

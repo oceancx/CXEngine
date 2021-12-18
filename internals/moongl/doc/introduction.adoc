@@ -1,0 +1,46 @@
+
+== Introduction
+
+MoonGL is an almost-one-to-one binding library to OpenGL, and it is intended to be
+used in the same way one would use OpenGL, except, of course, for coding in Lua 
+instead of C or pass:[C++]. 
+In particular, this means that tasks like creating a GL context and handling
+input are not addressed by MoonGL, and one needs to resort to <<see-also, external modules>>
+(some of them are needed to run the examples).
+
+This document purposedly reflects the structure of the 
+https://www.opengl.org/sdk/docs/[OpenGL 4.5 Reference card],
+so that one can easily find the correspondence between MoonGL and OpenGL API by
+comparing the two documents. Links to corresponding sections of the 
+https://www.khronos.org/opengl/wiki/Main_Page[OpenGL Wiki] are also provided for this purpose.
+
+As a general rule, each OpenGL function is bound to by a MoonGL function whose name is
+a https://en.wikipedia.org/wiki/Snake_case[snake_case] version of the original.
+For example, *glClear*( ) is bound to by *gl.clear*( ), *glClearBuffer*( ) 
+by *gl.clear_buffer*( ), and so on.
+
+The mapping between OpenGL and MoonGL functions is not exactly one-to-one, however.
+This is mainly because MoonGL leverages Lua's function overloading capabilities, whereas
+OpenGL, being a C API, has a lot of functions with slightly different names that are
+logically the same overloaded function.
+
+MoonGL also adds a few functions (tagged with _NONGL_ in this manual) that are not present 
+in the OpenGL API. Among these:
+
+* *new_xxx*( ) functions that combine generation and binding of a single object;
+* *unbind_xxx*( ) functions to unbind objects (these are just wrappers of the corresponding
+*bind_xxx*( ) which have the same effect if they receive a _nil_ or _0_ as object name);
+* <<datahandling, data handling functions>>, to convert data from Lua arrays to binary strings
+and viceversa;
+* utilities for <<gl.make_program, compiling shader programs>>.
+
+
+Parameter values that in OpenGL are #defined as integer codes become strings in MoonGL 
+(as is customary in Lua). There is usually an easily recognizable pattern to derive the 
+correct MoonGL string from the OpenGL #define name. For example, the buffer target codes 
+*GL_ARRAY_BUFFER* and *GL_ELEMENT_ARRAY_BUFFER* become *'_array_'* and *'_element array_'*, 
+respectively (the string is typically obtained by removing the GL_ prefix and possibly 
+some redundant part from the #define name, replacing underscores with spaces, and going 
+from upper-case to lower-case letters).
+
+<<<

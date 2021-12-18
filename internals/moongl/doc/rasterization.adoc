@@ -1,0 +1,70 @@
+
+== Rasterization
+
+* <<gl.enable, enable/disable/is_enabled>>
+
+'''
+
+Multisampling:
+
+[[gl.get_multisample]]
+* _value_, _..._ = *get_multisample*(_pname_) +
+[small]#_pname_: '_sample position_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetMultisample[glGetMultisample].#
+
+[[gl.min_sample_shading]]
+* *min_sample_shading*(_value_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMinSampleShading[glMinSampleShading].#
+
+'''
+
+Points:
+
+[[gl.point_size]]
+* *point_size*(_size_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointSize[glPointSize].#
+
+[[gl.point_parameter]]
+* *point_parameter*(_pname_, _value_) +
+[small]#_pname_: '_fade threshold size_', '_point sprite coord origin_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointParameter[glPointParameter].#
+
+* <<gl.get, get>>
+
+'''
+
+Line Segments:
+
+[[gl.line_width]]
+* *line_width*(_width_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLineWidth[glLineWidth].#
+
+'''
+
+Polygons:
+
+[[gl.front_face]]
+* *front_face*(_dir_) +
+[small]#_dir_: '_ccw_', '_cw_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFrontFace[glFrontFace].#
+
+[[gl.cull_face]]
+* *cull_face*(_mode_) +
+[small]#_mode_: '_front_', '_back_', '_front and back_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCullFace[glCullFace].#
+
+'''
+
+Polygon Rast. & Depth Offset:
+
+[[gl.polygon_mode]]
+* *polygon_mode*(_face_, _mode_) +
+[small]#_face_: '_front and back_'. +
+_mode_: '_point_', '_line_', '_fill_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode[glPolygonMode].#
+
+[[gl.polygon_offset]]
+* *polygon_offset*(_factor_, _units_) +
+*polygon_offset_clamp*(_factor_, _units_, _clamp_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonOffset[glPolygonOffset].#
+

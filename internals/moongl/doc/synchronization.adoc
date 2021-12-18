@@ -1,0 +1,34 @@
+
+== Synchronization
+
+[[gl.fence_sync]]
+* _sync_ = *fence_sync*(_condition_) +
+*delete_sync*(_sync_) +
+[small]#_condition_: '_gpu commands complete_'. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml[glFenceSync] -
+https://www.opengl.org/sdk/docs/man/html/glDeleteSync.xhtml[glDeleteSync].#
+
+[[gl.wait_sync]]
+* *wait_sync*(_sync_) +
+[small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glWaitSync.xhtml[glWaitSync].#
+
+[[gl.client_wait_sync]]
+* _status_ = *client_wait_sync*(_sync_, _timeout_, [_flag_, _..._ ]) +
+[small]#_status_: '_already signaled_', '_timeout expired_', '_condition satisfied_', '_wait failed_'. +
+https://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml[glClientWaitSync].#
+
+[[gl.get_sync]]
+* _value_, _..._ = *get_sync*(_sync_, _pname_) +
+[small]#_pname_: '_type_', '_condition_', '_status_', '_flags_'. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml[glGetSync].#
+
+////
+[[gl.is_sync]]
+* _boolean_ = *is_sync*(_sync_) +
+[small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glIsSync.xhtml[glIsSync].#
+////
+
+[[gl.raw_sync]]
+* _lightuserdata_ = *raw_sync*(_sync_) _NONGL_ +
+[small]#Returns the raw sync object as a lightuserdata (_GLsync*_).#
+

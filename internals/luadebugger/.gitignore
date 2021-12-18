@@ -1,0 +1,7 @@
+build/
+dist/
+test\luadbgtest.exe
+*.ilk
+*.pdb
+*.exe
+.vscode/ipch
