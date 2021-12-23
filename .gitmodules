@@ -1,0 +1,9 @@
+[submodule "externals/glew-cmake"]
+	path = externals/glew-cmake
+	url = https://github.com/oceancx/glew-cmake.git
+[submodule "externals/freetype"]
+	path = externals/freetype
+	url = https://github.com/oceancx/freetype.git
+[submodule "externals/glfw"]
+	path = externals/glfw
+	url = https://github.com/oceancx/glfw.git
