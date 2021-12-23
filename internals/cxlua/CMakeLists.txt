@@ -7,9 +7,6 @@ endif()
 
 find_package(LuaCJson)
 find_package(EZIO)
-find_package(NESupport)
-find_package(Nlohmann)
-find_package(glm)
 find_package(asio)
 find_package(kcp)
 
@@ -33,6 +30,8 @@ add_library(cxlua
     src/cxrandom.cpp
     src/tsv.cpp
     src/xyq_support.cpp
+    src/NESupport.cpp
+    src/luadbg.cpp
 )
 
 if(MSVC)
@@ -58,9 +57,6 @@ target_link_libraries(cxlua
   PUBLIC 
     EZIO::EZIO 
     LuaCJson::LuaCJson
-    Nlohmann 
-    NESupport::NESupport 
-    glm
     asio
     kcp
 )
