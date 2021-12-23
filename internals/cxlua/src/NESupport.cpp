@@ -756,9 +756,9 @@ namespace NE {
 				SpriteOriginDataHandler((uint8_t*)(m_FileData.data() + offset), fWidth, &image_idx[image_offset], &image_alpha[image_offset]);
 			}
 			bool copyLine = true;
-			for (int i = 0; i < fWidth; i++)
+			for (auto pi = 0; pi < fWidth; pi++)
 			{
-				if (image_idx[(uint32_t)(fWidth + i)] != 0)
+				if (image_idx[fWidth + pi] != 0)
 				{
 					copyLine = false;
 				}
@@ -793,12 +793,12 @@ namespace NE {
 
 			uint32_t* image = new uint32_t[fWidth * fHeight];
 			memset(image, 0, sizeof(uint32_t) * fWidth * fHeight);
-			for (int i = 0; i < fWidth * fHeight; i++)
+			for (int pi = 0; pi < fWidth * fHeight; pi++)
 			{
-				if (image_idx[i] != 0) {
-					image[i] = m_Palette32[image_idx[i]];
-					if (image_alpha[i] != 0) {
-						image[i] = AlphaRGBA(image[i], image_alpha[i]);
+				if (image_idx[pi] != 0) {
+					image[pi] = m_Palette32[image_idx[pi]];
+					if (image_alpha[pi] != 0) {
+						image[pi] = AlphaRGBA(image[pi], image_alpha[pi]);
 					}
 				}
 			}
@@ -912,8 +912,9 @@ namespace NE {
 		m_SpritesLoading[id] = false;
 	}
 
-	Sprite* WDF::LoadSpriteHeader(uint32_t id, std::vector<PalSchemePart>* patMatrix)
+	Sprite* WDF::LoadSpriteHeader(uint32_t id, std::vector<PalSchemePart>* patMatrix )
 	{
+		if (patMatrix == nullptr)return nullptr;
 		auto it = m_Sprites.find(id);
 		if (it != m_Sprites.end())
 		{
@@ -1093,7 +1094,7 @@ namespace NE {
 		sprite->Height = header.Height;
 
 		size_t readHeaderLen = offset;
-		uint16_t m_Palette16[256];
+		
 		MEM_COPY_WITH_OFF(offset, m_Palette16, data, sizeof(m_Palette16));
 
 		if (pal.size() != 0) {
@@ -1105,7 +1106,7 @@ namespace NE {
 			}
 		}
 
-		uint32_t m_Palette32[256];
+		
 		for (int k = 0; k < 256; k++)
 		{
 			m_Palette32[k] = NE::RGB565to888(m_Palette16[k], 0xff);
@@ -1219,7 +1220,6 @@ namespace NE {
 		int pos = mIdToPos[id];
 		assert(pos < mIndencies.size());
 		Index index = mIndencies[pos];
-		auto& wasMemData = m_FileData;
 		uint32_t wasReadOff = index.offset;
 		pData = m_FileData.data() + wasReadOff;
 		size = index.size;
@@ -1309,9 +1309,9 @@ namespace NE {
 		TgaHeader.ColorMapEntrySize = 0;
 		TgaHeader.XOrigin = 0;
 		TgaHeader.YOrigin = 0;
-		TgaHeader.ImageWidth = width;
-		TgaHeader.ImageHeight = height;
-		TgaHeader.PixelDepth = pixelDepth;
+		TgaHeader.ImageWidth = (uint16_t)width;
+		TgaHeader.ImageHeight = (uint16_t)height;
+		TgaHeader.PixelDepth = (uint8_t)pixelDepth;
 		TgaHeader.ImageDescruptor = 8;
 
 		std::fstream ofile;
@@ -1620,7 +1620,7 @@ namespace NE {
 		for (size_t i = 0; i < m_MapUnits.size(); i++)
 		{
 			uint32_t fileOffset = m_UnitIndecies[i];
-			uint32_t eat_num;
+			uint32_t eat_num = 0;
 			MEM_READ_WITH_OFF(fileOffset, &eat_num, m_FileData, sizeof(uint32_t));
 			fileOffset += eat_num * 4;
 			bool loop = true;
@@ -1693,7 +1693,7 @@ namespace NE {
 		return true;
 	}
 
-	bool MAP::ReadBRIG(uint32_t& offset, uint32_t size, uint32_t index)
+	bool MAP::ReadBRIG(uint32_t& offset, uint32_t size)
 	{
 		offset += size;
 		return true;
@@ -1756,11 +1756,11 @@ namespace NE {
 					//uint8_t g = m_MapPixelsRGB24[bmpIndex + 1];
 					//uint8_t b  = m_MapPixelsRGB24[bmpIndex + 2];
 					//pOutMaskBmp[h*maskInfo.Width + w] = ( 0x80 << 24 )| (b<< 16)| (g << 8 )| r ;
-					maskInfo.Data[h * maskInfo.Width + w] = (0x80 << 24);
+					maskInfo.Data[h * maskInfo.Width + w] = (uint32_t)(0x80 << 24);
 				}
 				else {
 					//pOutMaskBmp[h*maskInfo.Width + w] = ( 0x00 << 24 )| (b<< 16)| (g << 8 )| r ;
-					maskInfo.Data[h * maskInfo.Width + w] = (0x00 << 24);
+					maskInfo.Data[h * maskInfo.Width + w] = (uint32_t)(0x00 << 24);
 				}
 			}
 		}

@@ -77,7 +77,7 @@ void DebuggeeThreadFunc(int port)
 		check_lua_error(L, res);
 	});
 	 
-	server.set_on_message([L](const TCPConnectionPtr& conn, Buffer& buf, TimePoint ts) {
+	server.set_on_message([L](const TCPConnectionPtr& conn, Buffer& buf, TimePoint) {
 		lua_getglobal(L, "debuggee_on_message");
 		lua_push_tcp_connection(L, conn);
 		lua_push_ezio_buffer(L, buf);

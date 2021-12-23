@@ -339,7 +339,8 @@ extern "C" {
 #define luaL_openlibs __lua_proxy__()->luaL_openlibs
 
 #else
-
+#pragma warning(push)
+#pragma warning(disable: 4505)
 static LuaProxy* __lua_proxy_impl__()
 {
 	static LuaProxy __impl__{
@@ -494,6 +495,6 @@ static LuaProxy* __lua_proxy_impl__()
 	};
 	return &__impl__;
 }
+#pragma warning(pop)
 #define luaopen_luadbg(L) _luaopen_luadbg(&__lua_proxy_impl__,L)
-
 #endif // USE_LUA_AS_PROXY
