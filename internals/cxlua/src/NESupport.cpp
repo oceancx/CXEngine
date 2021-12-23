@@ -1073,9 +1073,8 @@ namespace NE {
 	{
 		Index index = mIndencies[mIdToPos[id]];
 		char* data = (char*)(m_FileData.data() + index.offset);
-		size_t size = index.size;
 		size_t offset = 0;
-		assert(check_file_type(data, size) == FILE_TYPE_SPRITE);
+		assert(check_file_type(data, index.size) == FILE_TYPE_SPRITE);
 
 		WAS::Header header;
 		MEM_COPY_WITH_OFF(offset, &header, data, sizeof(header));
