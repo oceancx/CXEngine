@@ -2,11 +2,17 @@
 
 CXEngine是一个方便大家使用lua+imgui做游戏的游戏引擎
 
-### 已构建完成的库下载
+### 编译版运行（目前只有Windows）
 
-https://pan.baidu.com/s/18S0OKkdUJIRutJ5MuaLEug 提取码：3ppy  
+1. 下载data文件夹 
+链接: https://pan.baidu.com/s/1r3Sh91JkgaC0rNGlTGRGqQ 提取码: upt8
 
-下载完成后，运行launcher.bat可以启动客户端，服务端，以及资源路径配置。
+2. 下载项目Release里面的dist.rar
+
+3. 解压data文件夹里面的资源到dist/data下
+
+4. 运行launcher.bat，点击“启动服务器”，点击“重连服务器”，点击界面上新生成的按钮“simulator:1581930144”，成功即可进入游戏。
+
 
 ### 构建方法：
 
@@ -25,7 +31,7 @@ externals目录下的库全是作者引用的外部库，外部的意思是作�
 
 internals目录下的库全是作者引用的内部库，意味着作者随时有可能对其进行修改。下面对内部库作一一介绍。
 
-1. kbase-cmake和ezio-cmake，这两个库修改自https://github.com/kingsamchen/KBase 和 https://github.com/kingsamchen/ezio  其中ezio依赖kbase，ezio是一个小巧高效的异步网络库，c++14编写。
+1. kbase-cmake和ezio-cmake，这两个库修改自https://github.com/kingsamchen/KBase 和 https://github.com/kingsamchen/ezio  其中ezio依赖kbase，ezio是一个小巧高效的异步网络库，c++14编写。正考虑用asio替换。
 
 2. lua-cmake，luacjson-cmake，为标准的lua库的cmake版。
 
