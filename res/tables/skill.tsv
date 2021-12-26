@@ -1,0 +1,272 @@
+ID	name	sound	type	sub_type	school	combo	atk_anim	group_kill	cast_anim	act_turn
+*0			atk	0	0	0				
+1	普攻		atk				0-1D3FF13C			
+2	DF_冤魂不散		spell		9		6-4EA6D4BF			
+3	DF_判官令	21-9651d674	spell		9		6-241C668A			
+4	DF_勘察令		spell		9		6-1AAB80F2			
+5	DF_寡欲令		spell		9		6-FDE4BF24			
+6	DF_尸腐毒		spell		9		6-150CC3BD			
+7	DF_幽冥鬼眼		spell		9		6-07DF52CA			
+8	DF_杳无音讯		spell		9		6-A18073CD			
+9	DF_还阳术		spell		9		6-5BB14859			
+10	DF_阎罗令	21-12a308c0	spell		9		6-9EB11259	7		
+11	DF_黄泉		spell		9		6-0F689A42			
+12	DF_黄泉之息		spell		9		6-2611E02E			
+13	DT_兵器谱		spell		1		6-47F4F7C1			
+14	DT_千里神行		spell		1		6-C813882A			
+15	DT_反间之计		spell		1		6-6B934898			
+16	DT_后发制人	21-39d047a5	atk		1		6-39B69986			
+17	DT_安神		spell		1		6-3E795B5A			
+18	DT_斩龙决		spell		1		6-1EE9406C			
+19	DT_杀气决		spell		1		6-C29A0737			
+20	DT_横扫千军	21-30d78cef	atk		1	3	6-ACA4A54A			2
+21	DT_破釜沉舟		atk		1		6-78D6FD06	3		
+22	FC_三星灭魔		spell		2		6-4850F165			
+23	FC_乙木仙遁		spell		2		6-6D0DA404			
+24	FC_乾天罡气		spell		2		6-144AF3F8			
+25	FC_五雷咒		spell		2		6-387C1EEB	3		
+26	FC_催眠符		spell	1	2		6-9EC0624E			
+27	FC_兵解符		spell		2		6-32A07D29			
+28	FC_失心符	21-2b38e88c	spell		2		6-091ADDC7			
+29	FC_失忆符		spell		2		6-D4AA2F8A			
+30	FC_失魂符		spell		2		6-7BCD8BC0			
+31	FC_定身符		spell		2		6-DE4E3A84			
+32	FC_归元咒		spell		2		6-517656E2			
+33	FC_碎甲符		spell		2		6-C27C1229			
+34	FC_神兵护法		spell		2		6-C1825B80			
+35	FC_离魂符		spell		2		6-1919B112			
+36	FC_落魄符		spell		2		6-4FB56243			
+37	FC_追魂符		spell		2		6-D4024676			
+38	FC_飞行符		spell		2		6-693F825E			
+39	HS_一苇渡江		spell	3	3		6-F354CCB8			
+40	HS_佛法无边		spell	3	3		6-C8011EF1			
+41	HS_佛门普渡		spell	2	3		6-1989B002			
+42	HS_唧唧歪歪	21-dbb88662	spell		3	3	6-C12C2663	5		
+43	HS_我佛慈悲	21-eb929469	spell	2	3		6-203B8773			
+44	HS_推拿	21-53e82e61	spell	2	3		6-03139F50	3		
+45	HS_正骨	21-3a16ad90	spell	2	3		6-E869B98A			
+46	HS_神佑复生		spell		3		6-DA22B637			
+47	HS_紫气东来		spell		3		6-A742E8AB			
+48	HS_舍生取义		spell	2	3		6-F0CE9045			
+49	HS_解毒		spell	3	3		6-DE34B83E			
+50	HS_达摩护体		spell	3	3		6-98F08C75			
+51	HS_金刚护体	21-426f46c8	spell	3	3		6-38C2146B			
+52	HS_金刚护法	21-c0a21592	spell	3	3		6-04DB6C0A			
+53	HS_针灸		spell	2	3		6-573F92CA			
+54	HS_韦陀护法		spell	3	3		6-94A5BEEC			
+55	LG_斩龙诀		spell		6					
+56	LG		spell		6		6-6EFC43B9			
+57	LG		spell		6		6-D4974969			
+58	LG		spell		6		6-56F9A205			
+59	LG		spell		6		6-3D74BE12			
+60	LG		spell		6		6-E99401D7			
+61	LG_乘风破浪		spell		6		6-45E2D57F			
+62	LG_双龙戏珠		spell		6		6-A680A821			
+63	LG_水遁		spell		6		6-4C4B85E5			
+64	LG_清心		spell		6		6-3105A01B			
+65	LG_神龙摆尾		spell		6		6-A4790CE1			
+66	LG_解封		spell		6		6-6D4CCE5A			
+67	LG_龙卷雨击	21-a39b4ca3	spell		6		6-D1772AED			
+68	LG_龙卷雨击1		spell		6		6-D61E2519			
+69	LG_龙卷雨击2		spell		6		6-E926E4D8			
+70	LG_龙卷雨击3		spell		6		6-F1F26922			
+71	LG_龙吟	21-a08d7d31	spell		6		6-63605C8D			
+72	LG_龙吟1		spell		6		6-5EC2D5BB			
+73	LG_龙吟2		spell		6		6-9FE48849			
+74	LG_龙吟_顶		spell		6		6-6BCAD3D9			
+75	LG_龙啸九天		spell		6		6-20D80D98			
+76	LG_龙腾	21-5505bc3c	spell		6		6-7367AF0F			
+77	LG_龙附		spell		6		6-4CA450D6			
+78	MWZ_三味真火	21-1366c86b	spell		10		6-FCDCCCEC			
+79	MWZ_无敌牛蚤		spell		10		6-5CC7C54B			
+80	MWZ_牛劲		spell		10		6-26F090BE			
+81	MWZ_牛屎遁		spell		10		6-AF2BA84E			
+82	MWZ_踏山裂石		spell		10		6-A68B3211			
+83	MWZ_飞砂走石	21-550eec3f	spell		10		6-49CBD108			
+84	MWZ_飞砂走石2		spell		10		6-2ABF191D			
+85	MWZ_魔王回首		spell		10		6-16B27FFC			
+86	MWZ_魔王护持		spell		10		6-3EAF2A57			
+87	NE_似玉生香	21-cdf51661	spell		4		6-46C7B776			
+88	NE_如花解语		spell		4		6-8A39B79F			
+89	NE_娉婷嬝娜		spell		4		6-430A96A6			
+90	NE_情天恨海		spell		4		6-14E3155E			
+91	NE_楚楚可怜		spell		4		6-182CE63B			
+92	NE_满天花雨	21-bbf17553	atk		4		6-9D5F7277			
+93	NE_百毒不侵		spell		4		6-D69CAE82			
+94	NE_移行换影		spell		4		6-750D0B8E			
+95	NE_红袖添香		spell		4		6-E5F52524			
+96	NE_莲步轻移		spell		4		6-9862D62E			
+97	NE_轻如鸿毛		spell		4		6-63F924D2			
+98	NE_飞花摘叶		spell		4		6-78BF64A4			
+99	PS_勾魂	21-799be15e	spell		12		6-1B472F2F			
+100	PS_含情默默	21-7f5fd02a	spell		12		6-5363AF2D			
+101	PS_复苏		spell		12		6-DC756B6F			
+102	PS_天罗地网	21-13848f75	spell		12		6-1E961656			
+103	PS_天蚕丝		spell		12		6-1460B81F			
+104	PS_夺命蛛丝		spell		12		6-7CD9C342			
+105	PS_姐妹同心		spell		12		6-EF3E3FE4			
+106	PS_摄魄	21-c0942a07	spell		12		6-59BD69F1			
+107	PS_瘴气		spell		12		6-BA6FC6C2			
+108	PS_盘丝舞		spell		12		6-3C4D9A51			
+109	PS_盘丝阵		spell		12		6-69BF4309			
+110	PS_魔心摄魂	21-799be15e	spell		12		6-27E27719			
+111	PS_魔心摄魄	21-c0942a07	spell		12		6-F145AC62			
+112	PS_魔音摄心		spell		12		6-78246FE4			
+113	PT_五行错位		spell		8		6-5A07D50A			
+114	PT_地裂火	21-3e2a375c	spell		8		6-18E13BE9	5		
+115	PT_坐莲		spell		8		6-7230F12D			
+116	PT_巨岩破	21-52ba8e8d	spell		8		6-565A6FE1	5		
+117	PT_日光华	21-ce259e8c	spell		8		6-45CA9913	5		
+118	PT_普渡众生		spell		8		6-2FF74578			
+119	PT_杨柳甘露	21-a4b9b11e	spell		8		6-380337C1			
+120	PT_灵动九天		spell		8		6-3FCA8C5A			
+121	PT_紧箍咒	21-b76eeba9	spell		8		6-5480C749			
+122	PT_苍茫树	21-7c77a0bf	spell		8		6-9CCB6E84	5		
+123	PT_靛沧海	21-6ebf646	spell		8		6-6C5F8376	5		
+124	PT_颠倒五行		spell		8		6-370E2580			
+125	STL_变身	21-ede744b8	spell		11		6-29D819DF			
+126	STL_天魔解体		spell		11		6-D20E78BF			
+127	STL_威摄		spell		11		6-8476181B			
+128	STL_定心术	21-4c67455	spell		11		6-2D07CCEC			
+129	STL_振翅千里		spell		11		6-9E9C74E5			
+130	STL_极度疯狂		spell		11		6-718754A2			
+131	STL_魔兽啸天		spell		11		6-68B4ACC7			
+132	STL_象形	21-7cfa5491	atk		11		0-BE127823			
+133	STL_鹰击	21-61688718	atk		11		0-A463C055			
+134	STL_狮搏	21-f3626bec	atk		11		0-688EA54B			
+135	STL_连环击	21-2ffc7f8a	atk		11		0-55EBCA6C			
+136	TG_五雷轰顶		spell		5		6-FFD64CCA			
+137	TG_天神护体		spell		5		6-C09CAD36			
+138	TG_天神护法		spell		5		6-73604A57			
+139	TG_天诛地灭		spell		5		6-178C114C			
+140	TG_宁心		spell		5		6-A72FDB18			
+141	TG_百万神兵	21-104b1b46	spell		5		6-8B8516F1			
+142	TG_腾云驾雾		spell		5		6-33EC6529			
+143	TG_金刚镯		spell		5		6-B4F1628C			
+144	TG_错乱		spell		5		6-2EB3476E			
+145	TG_镇妖		spell		5		6-1EB0026B			
+146	TG_雷霆万钧		spell		5		6-279AF873			
+147	TG_天雷斩		atk		5		0-B6141EB9			
+148	WZG_三花聚顶		spell		7		6-775FD2E3			
+149	WZG_乾坤妙法		spell		7		6-184AA512			
+150	WZG_天地同寿		spell		7		6-21F550FF			
+151	WZG_太极生化		spell		7		6-FB918ADC			
+152	WZG_斗转星移		spell		7		6-3EFD0B2F			
+153	WZG_日月乾坤	21-a7b1c535	spell		7		6-A70D1263			
+154	WZG_炼气化神	21-24a434e5	spell		7		6-3648247E			
+155	WZG_烟雨剑法		atk		7		6-472C0675			
+156	WZG_飘渺式		atk		7					
+157	WZG_生命之泉	21-da434212	spell		7		6-D2DC9AD3			
+158	WZG_驱魔		spell		7		6-726AC447			
+159	儿童技能_治疗		spell				6-FBF89980			
+160	儿童技能_还魂秘术		spell				6-5229F242			
+161	加蓝		spell				6-3E912705			
+162	加血		spell				6-77D2082D			
+163	反向气功波		spell				6-A3C28611			
+164	召唤		spell				6-F90D5594			
+165	召唤兽技能_上古灵符_冰冻		spell				6-02EA2E1B			
+166	召唤兽技能_上古灵符_心火		spell				6-9779B893			
+167	召唤兽技能_上古灵符_怒雷		spell				6-538C9770			
+168	召唤兽技能_上古灵符_流沙		spell				6-FC1C8EE7			
+169	召唤兽技能_力劈华山		spell				6-FF33B0EE			
+170	召唤兽技能_地狱烈火	21-d148d483	spell				6-BE325D99			
+171	召唤兽技能_地狱烈火2		spell				6-257635EE			
+172	召唤兽技能_奔雷咒	21-6f86497	spell				6-F54C4025			
+173	召唤兽技能_死亡召唤		spell				6-4E02EC44			
+174	召唤兽技能_水攻	21-4f09c15d	spell				6-F933209B			
+175	召唤兽技能_水漫金山	21-733f7160	spell				6-97311BAD			
+176	召唤兽技能_水漫金山2		spell				6-90E8589F			
+177	召唤兽技能_泰山		spell				6-99ED4688			
+178	召唤兽技能_泰山3		spell				6-783F9D20			
+179	召唤兽技能_泰山压顶	21-22fef25e	spell				6-133F8E31			
+180	召唤兽技能_烈火	21-f4a86696	spell				6-D112913D			
+181	召唤兽技能_牛妖施法		spell				6-8B036DE8			
+182	召唤兽技能_自爆		spell				6-A5199709			
+183	召唤兽技能_落岩	21-752ffcab	spell				6-0AC30DE6			
+184	召唤兽技能_雷击	21-ddd270f5	spell				6-0E30CD44			
+185	惊心一剑		atk				0-3BA4B993			
+186	死亡召唤		atk				6-4E02EC44			
+187	善恶有报		atk				0-8D8A818D			
+188	力劈华山		atk				6-FF33B0EE			
+189	召唤兽技能_夜舞倾城		spell				6-F18C76DD			
+190	壁垒击破		atk							
+191	嗜血追击		atk							
+192	剑荡四方		atk					4		
+193	地光		spell				6-6697B50E			
+194	夫妻技能_同甘共苦		spell				6-B0E5AE1E			
+195	夫妻技能_情义绵绵		spell				6-05AE199D			
+196	夫妻技能_情深似海		spell				6-6317DCCB			
+197	妙手空空		spell				6-F2007397			
+198	惊魂铃		spell				6-96E5FD5D			
+199	未知13		spell				6-48EF4031			
+200	未知14		spell				6-4A2939A4			
+201	未知15		spell				6-4B621DF7			
+202	未知17		spell				6-4E349B9A			
+203	未知19		spell				6-79423D7C			
+204	未知2		spell				6-60C36E86			
+205	未知20		spell				6-83FD8292			
+206	未知21		spell				6-AB5DAE52			
+207	未知22		spell				6-BA7D5CD7			
+208	未知23		spell				6-C7AC6E9C			
+209	未知24		spell				6-CB3B68B8			
+210	未知27		spell				6-DF4C3BE3			
+211	未知28		spell				6-E9401B00			
+212	未知29		spell				6-5AE22A40			
+213	未知30		spell				6-BA4460E0			
+214	未知4		spell				6-0E24875A			
+215	未知7		spell				6-22A50569			
+216	气功波		spell				6-DAAE7E11			
+217	烟花		spell				6-11C66BC9			
+218	烟花		spell				6-E7EF62F5			
+219	爆炸		spell				6-2CCE47B9			
+220	玲珑宝塔		spell				6-E4A2B66E			
+221	玲珑宝塔2		spell				6-E85705E9			
+222	苍白纸人		spell				6-899DFF11			
+223	装备特技_修罗咒		spell				6-95065313			
+224	装备特技_光辉之甲		spell				6-38FD76EA			
+225	装备特技_冥王爆杀		spell				6-A3FE111E			
+226	装备特技_冰清		spell				6-17238B9F			
+227	装备特技_凝气决		spell				6-3240F0D4			
+228	装备特技_凝滞术		spell				6-D1E593CE			
+229	装备特技_凝神决		spell				6-7EE33126			
+230	装备特技_吸血		spell				6-7E9811A9			
+231	装备特技_命归		spell				6-30F2B60C			
+232	装备特技_命疗术		spell				6-F3B31E4E			
+233	装备特技_天衣无缝		spell				6-C183DB1E			
+234	装备特技_太极护法		spell				6-9B23F38E			
+235	装备特技_帝释无双		spell				6-37F24957			
+236	装备特技_心如明镜		spell				6-A7469D8F			
+237	装备特技_放下屠刀		spell				6-81B4599F			
+238	装备特技_普渡众生		spell				6-E1084D39			
+239	装备特技_死亡之音		spell				6-FA8837EE			
+240	装备特技_残月		spell				6-090643F5			
+241	装备特技_气归		spell				6-D077C3A0			
+242	装备特技_气疗术		spell				6-53E46986			
+243	装备特技_水清		spell				6-66150076			
+244	装备特技_流云决		spell				6-FE27EBCF			
+245	装备特技_碎甲术		spell				6-D0EEC915			
+246	装备特技_移形换影		spell				6-95473D14			
+247	装备特技_笑里藏刀		spell				6-5DE57BA4			
+248	装备特技_绝幻魔音		spell				6-188E9B62			
+249	装备特技_虚空之刃		spell				6-635BE0BC			
+250	装备特技_诅咒之亡		spell				6-DBC405D9			
+251	装备特技_诅咒之伤		spell				6-3D14B496			
+252	装备特技_起死回生		spell				6-8E92AE82			
+253	装备特技_身似菩提		spell				6-F224F08A			
+254	装备特技_野兽之力		spell				6-203B8C75			
+255	西瓜加血		spell				6-808CEB72			
+256	观像		spell				6-1BE628F9			
+257	观色		spell				6-71E4E462			
+258	雷击		spell				6-4C117B7C			
+259	雷击2		spell				6-2A997658			
+260	飞石		spell				6-9F9BEB7D			
+261	龙		spell				6-DC8C69E8			
+262	普攻2		atk	3		2	0-1D3FF13C	3		
+263	道具		spell							
+264	防御		idle							
+265	召唤		idle							
+266	召还		idle							
+267	捕捉		trap							
+268	逃跑		flee							
+269	保护		idle							
+270	自动		idle							

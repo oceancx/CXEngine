@@ -1,0 +1,13 @@
+name	type	base_target	lv_accum_target	base_damage	lv_accum_damage	base_defend	lv_accum_defend	base_hp	lv_accum_hp	base_mp	lv_accum_mp	base_spiritual	lv_accum_spiritual	base_agile	lv_accum_agile
+普通武器	weapon	10	35	10	30										
+普通铠甲	armor					10	15								
+普通头盔	helmet					5	5			5	10				
+普通腰带	belt					5	5	10	20						
+普通项链	necklace											5	12		
+普通鞋子	shoes					5	5							5	3
+强化武器	weapon_enforced	10.5	36.75	10.5	31.5										
+强化铠甲	armor_enforced					10.5	15.75								
+强化头盔	helmet_enforced					5.25	5.25			5	10.5				
+强化腰带	belt_enforced					5.25	5.25	10	21						
+强化项链	necklace_enforced											5	12.6		
+强化鞋子	shoes_enforced					5.25	5.25							5	3

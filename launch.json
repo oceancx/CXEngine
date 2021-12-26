@@ -1,0 +1,60 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launcher",
+            "type": "cxlua",
+            "request": "launch",
+            "ip": "127.0.0.1",
+            "port": 9400,
+            "cwd": "${workspaceFolder}\\",
+            "program": "bin\\cxluax.exe",
+            "args": [
+                "--script_path=scripts/launcher/",
+                "--dbg_port=9400"
+            ]
+        },
+        {
+            "name": "Example",
+            "type": "cxlua",
+            "request": "launch",
+            "ip": "127.0.0.1",
+            "port": 10086,
+            "cwd": "${workspaceFolder}\\",
+            "stopOnEntry": true,
+            "program": "bin\\CXEngine.exe",
+            "args": [
+                "--script_path=scripts/examples/",
+                "--dbg_port=10086",
+                "--luapath=_debugger.lua",
+            ]
+        },
+        {
+            "name": "Server",
+            "type": "cxlua",
+            "request": "attach",
+            "ip": "127.0.0.1",
+            "port": 9500,
+            "cwd": "${workspaceFolder}\\"
+        },
+        {
+            "name": "Client",
+            "type": "cxlua",
+            "request": "attach",
+            "ip": "127.0.0.1",
+            "port": 9600,
+            "cwd": "${workspaceFolder}\\"
+        },
+        {
+            "name": "Attach",
+            "type": "cxlua",
+            "request": "attach",
+            "ip": "127.0.0.1",
+            "port": 10086,
+            "cwd": "${workspaceFolder}\\",
+        },
+    ]
+}
