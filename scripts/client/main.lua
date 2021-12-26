@@ -32,12 +32,10 @@ SERVER_PORT = command_arg_opt_int('port', 45000)
 DBG_PORT = command_arg_opt_int('dbg_port', 9601)
 
 function init()
-    at_exit_manager_init()
-    io_service_context_init()
     -- luadbg_listen(DBG_PORT)
 
     iw_init(SCREEN_WIDTH,SCREEN_HEIGHT)   
-    iw_set_font(vfs_get_workdir()..'/res/font/simsun.ttc',14)
+    iw_set_font(vfs_get_workdir()..'/assets/font/simsun.ttc',14)
 
     content_system_init()
     timer_manager_init()

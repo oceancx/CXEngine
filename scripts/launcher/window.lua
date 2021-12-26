@@ -149,6 +149,7 @@ function launcher_init()
 end
 
 function launcher_update()
+    local shared_netq = net_get_shared_queue()
     if not shared_netq:empty(0) then
         local pt = shared_netq:front(0)
         local type = pt:ReadAsInt()
@@ -159,13 +160,10 @@ function launcher_update()
         shared_netq:pop_front(0)
     end
 
-    if cx_client:IsConnected() then
-        while not shared_netq:empty(1) do
-            local req = shared_netq:front(1)
-            local conn = cx_client:connection()
-            conn:Send(req)
-            shared_netq:pop_front(1)
-        end
+    while not shared_netq:empty(1) do
+        local req = shared_netq:front(1)
+        net_send_buffer_in_c(req)
+        shared_netq:pop_front(1)
     end
 
     local viewport, x, y, w, h = imgui.GetMainViewport();
@@ -248,7 +246,7 @@ function launcher_update()
         os.execute(cmd)
     end
     imgui.SameLine()
-    if imgui.Button('重连服务器') then net_reconnect() end
+    if imgui.Button('重连服务器') then net_manager_reconnect() end
 
     imgui.SameLine()
     if imgui.Button('关闭服务器') then end

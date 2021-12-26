@@ -10,7 +10,7 @@ end
 
 do
     iw_init(800, 600)
-    iw_set_font(vfs_get_workdir()..'/res/font/simsun.ttc',14)
+    iw_set_font(vfs_get_workdir()..'/assets/font/simsun.ttc',14)
 
     iw_render(update)
     iw_deinit()

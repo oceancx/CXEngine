@@ -2,20 +2,9 @@
 
 #include <stdio.h>
 #include <script_system.h>
-#include "kbase/at_exit_manager.h"
-#include "ezio/io_context.h"
-#include "ezio/io_service_context.h"
-#include "ezio/event_loop.h"
-#include "ezio/socket_address.h"
-#include "ezio/tcp_server.h"
-#include "ezio/tcp_connection.h"
-#include "ezio/buffer.h"
-#include "ezio/acceptor.h"
-#include "ezio/connector.h"
-#include "ezio/tcp_client.h"
+#include "cxezio/buffer.h"
 
 #include "scene/base_scene.h"
-#include "kbase/pickle.h"
 #include "scene/scene_manager.h"
 #include "logger.h"
 #include "net_thread_queue.h"
@@ -23,7 +12,7 @@
 #include "cxlua.h"
 #include "asio.hpp"
 
-using namespace ezio;
+using namespace cxezio;
 
 using asio::ip::tcp;
 
@@ -73,7 +62,7 @@ public:
 		}
 	}
 
-	void SendMsgToServer(const ezio::Buffer buf) {
+	void SendMsgToServer(const  Buffer buf) {
 		asio::post(m_IOContext,
 			[this, buf]()
 			{
@@ -141,7 +130,7 @@ private:
 	tcp::socket m_Socket;
 	std::string m_IP;
 	std::string m_Port;
-	ezio::Buffer m_Buffer;
+	Buffer m_Buffer;
 
 };
 CXClient* _CXClient = nullptr;
@@ -168,7 +157,7 @@ int net_manager_update(lua_State*L)
 	{
 		Buffer& pt = g_ReadPacketQueue.Front(NetThreadQueue::Read);
 		lua_getglobal(L, "game_dispatch_message");
-		lua_push_ezio_buffer(L, pt);
+		lua_push_cxezio_buffer(L, pt);
 		int res = lua_pcall(L, 1, 0, 0);
 		check_lua_error(L, res);
 		g_ReadPacketQueue.PopFront(NetThreadQueue::Read);
@@ -197,7 +186,7 @@ void net_manager_connect()
 }
 
 void net_send_message_in_c(int proto, const char* msg) {
-	ezio::Buffer buf;
+Buffer buf;
 	buf.Write(proto);
 	buf.Write(msg, strlen(msg));
 	int cnt = (int)buf.readable_size();

@@ -15,6 +15,5 @@ add_subdirectory(common)
 add_subdirectory(client)
 add_subdirectory(server)
 add_subdirectory(cxluax)
-add_subdirectory(cxluax3d)
 
 

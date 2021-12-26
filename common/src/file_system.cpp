@@ -37,12 +37,12 @@ std::string FileSystem::FormatPath(String path)
 
 String FileSystem::GetTSVPath(String name)
 {
-	return GetPath() + "res/tables/" + name + ".tsv";
+	return GetPath() + "assets/tables/" + name + ".tsv";
 }
 
 String FileSystem::GetTablePath(String name)
 {
-	return GetPath() + "res/tables/" + name;
+	return GetPath() + "assets/tables/" + name;
 }
 
 std::string FileSystem::GetAbsPath(std::string localPath)
@@ -52,17 +52,17 @@ std::string FileSystem::GetAbsPath(std::string localPath)
 
 std::string FileSystem::GetResourcePath(std::string localPath)
 {
-	return GetPath() + "res/" + localPath;
+	return GetPath() + "assets/" + localPath;
 }
 
 std::string FileSystem::GetAssetsPath(std::string path)
 {
-	return GetPath() + "res/assets/" + path;
+	return GetPath() + "assets/assets/" + path;
 }
 
 std::string FileSystem::GetShaderPath(std::string path)
 {
-	return GetPath() + "res/shader/" + path;
+	return GetPath() + "assets/shader/" + path;
 }
 std::string FileSystem::GetLuaPath(std::string path)
 {
@@ -78,7 +78,7 @@ std::string FileSystem::GetMapPath(std::string path)
 }
 std::string FileSystem::GetFontPath(std::string path)
 {
-	return GetPath() + "res/font/" + path;
+	return GetPath() + "assets/font/" + path;
 }
 
 std::string FileSystem::GetGameFontPath()
@@ -88,7 +88,7 @@ std::string FileSystem::GetGameFontPath()
 
 std::string FileSystem::GetIconPath(std::string path)
 {
-	return GetPath() + "res/icon/" + path;
+	return GetPath() + "assets/icon/" + path;
 }
 
 void FileSystem::InitWorkPath()

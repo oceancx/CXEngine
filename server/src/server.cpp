@@ -1,24 +1,20 @@
 #include "server.h"
-#include "ezio/socket_address.h"
-#include "ezio/tcp_server.h"
 #include "tsv.h"
 #include "protocol.h"
-#include "ezio/endian_utils.h"
-#include "ezio/buffer.h"
+#include "cxezio/endian_utils.h"
+#include "cxezio/buffer.h"
 #include "logger.h"
 #include <script_system.h>
 #include "net_thread_queue.h"
 #include "lua_net.h"
 #include "file_system.h"
-#include "kbase/at_exit_manager.h"
-#include "ezio/io_service_context.h"
 #include "cxlua.h"
 #include "asio.hpp"
 
 #include <ctime>
 #include <chrono>
 
-
+using namespace cxezio;
 // A custom implementation of the Clock concept from the standard C++ library.
 struct time_t_clock
 {
@@ -111,7 +107,7 @@ public:
 		ReadHeader();
 	}
 
-	void Send(const ezio::Buffer buf) {
+	void Send(const Buffer buf) {
 		asio::post(_IOContext,
 			[this, buf]()
 			{
@@ -163,7 +159,7 @@ private:
 					auto* m_L = script_system_get_luastate();
 					lua_getglobal(m_L, "server_thread_on_message");
 					lua_pushlightuserdata(m_L, this);
-					lua_push_ezio_buffer(m_L, m_Buffer);
+					lua_push_cxezio_buffer(m_L, m_Buffer);
 					lua_pushinteger(m_L, len);
 					lua_push_net_thread_queue(m_L, &g_ReadPacketQueue);
 					int res = lua_pcall(m_L, 4, 0, 0);
@@ -178,7 +174,7 @@ private:
 			});
 	}
 	tcp::socket m_Socket;
-	ezio::Buffer m_Buffer;
+	Buffer m_Buffer;
 };
 std::map<uint64_t, GameSession*> g_PlayerConnections;
 
@@ -267,7 +263,7 @@ void GameServer::SendMessageToPlayer(uint64_t pid, int proto, const char* msg)
 	auto it = g_PlayerConnections.find(pid);
 	if (it != g_PlayerConnections.end())
 	{
-		ezio::Buffer buf;
+		Buffer buf;
 		buf.Write(proto);
 		buf.Write(msg, strlen(msg));
 		buf.Prepend((int)buf.readable_size());
@@ -278,7 +274,7 @@ void GameServer::SendMessageToPlayer(uint64_t pid, int proto, const char* msg)
 
 void GameServer::SendMessageToPlayers(std::vector<uint64_t> pids, int proto, const char* msg)
 {
-	ezio::Buffer buf;
+	Buffer buf;
 	buf.Write(proto);
 	buf.Write(msg, strlen(msg));
 	buf.Prepend((int)buf.readable_size());
@@ -291,39 +287,7 @@ void GameServer::SendMessageToPlayers(std::vector<uint64_t> pids, int proto, con
 	}
 }
 
-void GameServer::OnConnection(const TCPConnectionPtr& conn)
-{
-	/*const char* state = conn->connected() ? "connected" : "disconnected";
-	cxlog_info("Connection %s is %s\n", conn->peer_addr().ToHostPort().c_str(), state);
-	if (conn->connected())
-	{
-
-	}else {
-		for (auto& it : g_PlayerConnections) {
-			if (it.second == conn.get()) {
-				uint64_t pid = it.first;
-				g_PlayerConnections.erase(pid);
-
-				lua_getglobal(m_L, "server_on_disconnect");
-				lua_pushinteger(m_L, pid);
-				int res = lua_pcall(m_L, 1, 0, 0);
-				check_lua_error(m_L, res);
-				break;
-			}
-		}
-	}*/
-}
-
-void GameServer::OnMessage(const TCPConnectionPtr& conn, Buffer& buf, TimePoint ts)
-{
-	/*lua_getglobal(m_L, "server_thread_on_message");
-	lua_push_tcp_connection(m_L, conn);
-	lua_push_ezio_buffer(m_L, buf);
-	lua_push_net_thread_queue(m_L, &g_ReadPacketQueue);
-	int res = lua_pcall(m_L, 3, 0, 0);
-	check_lua_error(m_L, res);*/
-}
-
+ 
 void game_server_start(int port) {
 
 	CXGameServer = new GameServer(port);
@@ -336,7 +300,7 @@ int game_server_update(lua_State* L) {
 	{
 		Buffer& pt = g_ReadPacketQueue.Front(NetThreadQueue::Read);
 		lua_getglobal(L, "game_server_dispatch_message");
-		lua_push_ezio_buffer(L, pt);
+		lua_push_cxezio_buffer(L, pt);
 		int res = lua_pcall(L, 1, 0, 0);
 		check_lua_error(L, res);
 		g_ReadPacketQueue.PopFront(NetThreadQueue::Read);
@@ -380,7 +344,7 @@ int net_send_message_to_players_in_c(lua_State* L) {
 int net_send_message_to_all_players_in_c(lua_State* L) {
 	int proto = (int)lua_tointeger(L, 1);
 	const char* msg = lua_tostring(L, 2);
-	ezio::Buffer buf;
+	Buffer buf;
 	buf.Write(proto);
 	buf.Write(msg, strlen(msg));
 	buf.Prepend((int)buf.readable_size());
@@ -406,6 +370,13 @@ int erase_pid_connection_pair(lua_State* L) {
 	return 0;
 }
 
+int game_server_send_buffer(lua_State* L) {
+	GameSession* session = (GameSession*)lua_touserdata(L, 1);
+	auto* buffer = lua_check_cxezio_buffer(L, 2);
+	session->Send(*buffer);
+	return 0;
+}
+
 void luaopen_game_server(lua_State* L)
 {
 	script_system_register_luac_function(L, net_send_message_in_c);
@@ -415,5 +386,7 @@ void luaopen_game_server(lua_State* L)
 	script_system_register_function(L, game_server_start);
 	script_system_register_luac_function(L, game_server_update);
 	script_system_register_function(L, game_server_stop);
+
+	script_system_register_luac_function(L, game_server_send_buffer);
 }
 

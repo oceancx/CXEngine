@@ -22,7 +22,7 @@ end
 local account_database = {}
 function read_account_database()
     cxlog_info('read_account_database')
-    local path = vfs_get_workdir() .. '/res/storage/account.data'
+    local path = vfs_get_workdir() .. '/assets/storage/account.data'
     local db = read_database_file(path)
     if db then
         for i, v in ipairs(db) do
@@ -42,7 +42,7 @@ stub[PTO_C2C_SAVE_ACCOUNT_DATABASE] = function()
     end
     table.sort(accounts, function(a, b) return a.pid < b.pid end)
     
-    local path = vfs_get_workdir() .. '/res/storage/account.data'
+    local path = vfs_get_workdir() .. '/assets/storage/account.data'
     local fw = io.open(path, 'w')
     if not fw then return end
     fw:write(cjson.encode(accounts))
@@ -92,12 +92,12 @@ function server_thread_on_message(conn, buf, len, netq)
             erase_pid_connection_pair(pid)
             insert_pid_connection_pair(pid, conn)
             msg.pid = pid
-            local newmsg = ezio_buffer_create()
+            local newmsg = cxezio_buffer_create()
             newmsg:WriteInt(PTO_C2C_LOGIN)
             newmsg:WriteString(cjson.encode(msg))
             print('newmsg', cjson.encode(msg))
             netq:push_back(0, newmsg, newmsg:readable_size())
-            ezio_buffer_destroy(newmsg)
+            cxezio_buffer_destroy(newmsg)
         end
     elseif type == PTO_C2S_GM then
         buf:Consume(4)

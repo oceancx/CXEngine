@@ -38,7 +38,7 @@ do
     io_service_context_init()
     luadbg_listen(DBG_PORT)
     iw_init(SCREEN_WIDTH,SCREEN_HEIGHT)
-    iw_set_font(vfs_get_workdir()..'/res/font/simsun.ttc',14)
+    iw_set_font(vfs_get_workdir()..'/assets/font/simsun.ttc',14)
     iw_render(update)
     iw_deinit()
 end

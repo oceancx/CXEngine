@@ -60,7 +60,7 @@ end
 do
     luadbg_listen(10086, true)
     iw_init(800, 600)
-    iw_set_font(vfs_get_workdir() .. '/res/font/simsun.ttc',14)
+    iw_set_font(vfs_get_workdir() .. '/assets/font/simsun.ttc',14)
     local ok, ret = pcall(init)
     if not ok then
         print(ret)

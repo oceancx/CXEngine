@@ -1,7 +1,7 @@
 
 function actors_on_load()
     cxlog_info('actors_on_load')
-    local path = vfs_get_workdir() .. '/res/storage/actor.data'
+    local path = vfs_get_workdir() .. '/assets/storage/actor.data'
 	local db = read_database_file(path)
 	if db then
 		for i,v in ipairs(db) do
@@ -21,7 +21,7 @@ function actors_on_save()
     end
     table.sort(actor_infos, function(a,b) return a[PROP_ID] < b[PROP_ID] end)
     	
-	local path = vfs_get_workdir() .. '/res/storage/actor.data'
+	local path = vfs_get_workdir() .. '/assets/storage/actor.data'
 	local fw = io.open(path,'w')
     if not fw then return end
 	fw:write(cjson.encode(actor_infos))

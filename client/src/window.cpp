@@ -16,9 +16,6 @@
 #include "sprite_renderer.h"
 #include <graphics/ui_renderer.h>
 extern "C" {
-#include <shader.h>
-#include <screen.h>
-#include <material.h>
 	void font_size(const char* str, int unicode, struct font_context* ctx) {}
 	void font_glyph(const char* str, int unicode, void* buffer, struct font_context* ctx) {}
 	void font_create(int font_size, struct font_context* ctx) {}
@@ -333,7 +330,7 @@ void iw_init(int w, int h)
 	// shader_load(0, sprite_fs, sprite_vs, 0, nullptr);
 	// screen_init(screenWidth, screenHeight, 1.f);
 
-	char* nss[] = { "asd", "asdsd" };
+	/*char* nss[] = { "asd", "asdsd" };
 	shader_init();
 	shader_load(0, sprite_fs, sprite_vs, 0, nullptr);
 	screen_init(w, h, 1.f);
@@ -344,7 +341,7 @@ void iw_init(int w, int h)
 
 	int sz = material_size(0);
 	struct material* m = (struct material*)malloc(sz);
-	material_init(m, sz, 0);
+	material_init(m, sz, 0);*/
 
 
 

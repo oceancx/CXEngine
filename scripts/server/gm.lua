@@ -7,13 +7,13 @@ function handle_gm_message(conn, msg)
 
         cxlog_info('response','account_info', cjson.encode(infos))
         
-        -- local buf = ezio_buffer_create()
-        -- buf:WriteInt(PTO_S2C_GM)
-        -- buf:WriteString(cjson.encode(infos))
-        -- local cnt = buf:readable_size()
-        -- buf:PrependInt(cnt)
-        -- conn:Send(buf)
-        -- ezio_buffer_destroy(buf)	
+        local buf = cxezio_buffer_create()
+        buf:WriteInt(PTO_S2C_GM)
+        buf:WriteString(cjson.encode(infos))
+        local cnt = buf:readable_size()
+        buf:PrependInt(cnt)
+        game_server_send_buffer(conn,buf)
+        cxezio_buffer_destroy(buf)	
     else
         net_send_message_to_all_players(PTO_S2C_GM, cjson.encode(msg))
     end

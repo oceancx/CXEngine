@@ -8,13 +8,12 @@ cp bin/Release/CXServer.exe dist/bin/
 cp bin/Release/CXEngine.exe dist/bin/
 cp bin/Release/cxluax.exe dist/bin/
 
-mkdir -p dist/res
-cp -r res/font dist/res/
-cp -r res/icon dist/res/
-cp -r res/shader dist/res/
-cp -r res/storage dist/res/
-cp -r res/tables dist/res/
-cp -r res/fbx dist/res/
+mkdir -p dist/assets
+cp -r assets/font dist/assets/
+cp -r assets/icon dist/assets/
+cp -r assets/shader dist/assets/
+cp -r assets/storage dist/assets/
+cp -r assets/tables dist/assets/
 
 mkdir -p dist/data
 cp -r data/scene   dist/data

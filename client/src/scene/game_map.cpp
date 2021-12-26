@@ -65,7 +65,7 @@ GameMap::GameMap(uint32 mapID)
 		m_MapTiles.clear();
 
 		m_MaskTiles.clear();
-		m_CellPic = new Texture(FileSystem::GetAbsPath("res/icon/x.png"));
+		m_CellPic = new Texture(FileSystem::GetAbsPath("assets/icon/x.png"));
 #endif
 		
 	}

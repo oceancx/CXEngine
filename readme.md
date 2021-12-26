@@ -20,7 +20,7 @@ CXEngine是一个方便大家使用lua+imgui做游戏的游戏引擎
 
 2. 构建external工程。用cmake.exe打开CXEngine/external/CMakeLists.txt，配置构建的binaries目录为CXEngine/external/build, vs版本请选择Visual Studio 15 2017 之后的64位版本，之后全部采用默认配置，点击生成，直到vs工程生成。然后用IDE打开工程，构建INSTALL目标，这个构建完成后会自动安装libs还有include文件到CXEngine/external/dist目录下
 
-3. 构建CXEngineAll工程。用cmake.exe打开CXEngine/CMakeLists.txt，配置构建的binaries目录为CXEngine/build。 vs版本请选择Visual Studio 15 2017 之后的64位版本，之后全部采用默认配置，点击生成，直到vs工程生成。然后用IDE打开工程，构建CXEngineAll目标。成功构建完成后，CXEngine/bin/Debug或者CXEngine/bin/Release下会生成CXEngine.exe, CXServer.exe, cxlua.exe。
+3. 构建CXEngineAll工程。用cmake.exe打开CXEngine/CMakeLists.txt，配置构建的binaries目录为CXEngine/build。 vs版本请选择Visual Studio 15 2017 之后的64位版本，之后全部采用默认配置，点击生成，直到vs工程生成。然后用IDE打开工程，构建CXEngineAll目标。成功构建完成后，CXEngine/bin/Debug或者CXEngine/bin/Release下会生成CXEngine.exe, CXServer.exe, cxluax.exe。
 
 4. sh launcher.bat。即可打开launcher，从而启动服务端客户端或者配置资源目录。
 
@@ -31,19 +31,17 @@ externals目录下的库全是作者引用的外部库，外部的意思是作�
 
 internals目录下的库全是作者引用的内部库，意味着作者随时有可能对其进行修改。下面对内部库作一一介绍。
 
-1. kbase-cmake和ezio-cmake，这两个库修改自https://github.com/kingsamchen/KBase 和 https://github.com/kingsamchen/ezio  其中ezio依赖kbase，ezio是一个小巧高效的异步网络库，c++14编写。正考虑用asio替换。
+1. lua-cmake，luacjson-cmake，为标准的lua库的cmake版。
 
-2. lua-cmake，luacjson-cmake，为标准的lua库的cmake版。
+2. nlohmann c++json库，单.hpp文件包含
 
-3. nlohmann c++json库，单.hpp文件包含
+3. NESupport 梦幻西游资源读取库，单一.h&.cpp文件包含
 
-4. NESupport 梦幻西游资源读取库，单一.h&.cpp文件包含
+4. cxlua 依赖lua,luacjson,nesupport,nlohmann,glm。cxlua包装了基础性的c++接口，让其可以被lua调用到。CXEngine，CXServer以及launcher都依赖cxluax。
 
-5. cxlua 依赖lua,luacjson,ezio,nesupport,nlohmann,glm。cxlua包装了基础性的c++接口，让其可以被lua调用到。SimpleEngine，SimpleServer以及launcher都依赖cxlua。
+6. luadbg 提供了lua调试器，包含了vscode的lua调试器适配器，以及嵌入到被调试程序里的调试相关功能的支持（例如断点，步入，步出）
 
-6. luadebugger https://github.com/oceancx/luadebugger  这个目录是一个repo，提供了lua调试器，包含了vscode的lua调试器适配器，以及嵌入到被调试程序里的调试相关功能的支持（例如断点，步入，步出）
-
-7. gsm-cmake，miniaudio-cmake 修改自https://github.com/dr-soft/miniaudio 使其支持播放相关音频文件。
+7. miniaudio-cmake 修改自https://github.com/dr-soft/miniaudio 使其支持播放相关音频文件。
 
 8. imgui https://github.com/ocornut/imgui ，游戏必备，本项目也提供了imgui的lua binding生成。
 
@@ -69,10 +67,10 @@ enums_protocol.lua 定义了所有客户端服务端之间的协议
 
 ### 目前CXEngine开发介绍
 
-<img src="https://github.com/oceancx/SimpleEngine/blob/master/res/icon/1.jpg" width="50%" height="50%">
-<img src="https://github.com/oceancx/SimpleEngine/blob/master/res/icon/2.jpg" width="50%" height="50%">
-<img src="https://github.com/oceancx/SimpleEngine/blob/master/res/icon/3.jpg" width="50%" height="50%">
-<img src="https://github.com/oceancx/SimpleEngine/blob/master/res/icon/4.jpg" width="50%" height="50%">
+<img src="https://github.com/oceancx/SimpleEngine/blob/master/assets/icon/1.jpg" width="50%" height="50%">
+<img src="https://github.com/oceancx/SimpleEngine/blob/master/assets/icon/2.jpg" width="50%" height="50%">
+<img src="https://github.com/oceancx/SimpleEngine/blob/master/assets/icon/3.jpg" width="50%" height="50%">
+<img src="https://github.com/oceancx/SimpleEngine/blob/master/assets/icon/4.jpg" width="50%" height="50%">
 
 
 ALT+E 可以给自己染色，更换形象，更换武器

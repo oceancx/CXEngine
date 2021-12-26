@@ -9,36 +9,36 @@ function vfs_formatpath(path)
 	return string.gsub(path,'\\','/')
 end
 function vfs_get_tsvpath(name)
-	return work_dir..'res/tables/'..name..'.tsv'
+	return work_dir..'assets/tables/'..name..'.tsv'
 end
 function vfs_get_tablepath(name)
-	return work_dir..'res/tables/'..name
+	return work_dir..'assets/tables/'..name
 end
 function vfs_get_abspath(path)
 	return work_dir..path
 end
 function vfs_get_resourcepath(path)
-	return work_dir..'res/'..path
+	return work_dir..'assets/'..path
 end
 function vfs_get_assetspath(path)
-	return work_dir..'res/assets/'..path
+	return work_dir..'assets/assets/'..path
 end
 function vfs_get_shaderpath(path)
-	return work_dir..'res/shader'..path
+	return work_dir..'assets/shader'..path
 end
 
 
 function vfs_get_wdfpath(path)
-	return work_dir..'res/data/' ..path
+	return work_dir..'assets/data/' ..path
 end
 function vfs_get_mappath(path)
-	return work_dir..'res/data/scene/'..path..'.map'
+	return work_dir..'assets/data/scene/'..path..'.map'
 end
 function vfs_get_fontpath(path)
-	return work_dir..'res/font/'..path
+	return work_dir..'assets/font/'..path
 end
 function vfs_get_iconpath(path)
-	return work_dir..'res/icon/'..path
+	return work_dir..'assets/icon/'..path
 end
 
 function IsServer()

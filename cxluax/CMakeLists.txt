@@ -18,7 +18,6 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/src PREFIX "Source Files"  FILES $
 add_executable(cxluax
   ${SOURCES_HEADER_PRI}
   src/main.cpp
-  src/record.cpp
   src/coordinate.cpp
   ${COMMON_SOURCE_DIR}/script_system.cpp
   ${COMMON_SOURCE_DIR}/file_loading.cpp
@@ -30,18 +29,7 @@ add_executable(cxluax
   ${COMMON_SOURCE_DIR}/time/timer.cpp
   ${COMMON_SOURCE_DIR}/time/timer_manager.cpp
   src/window.cpp
-  src/asio_test.cpp
-  src/server/server.cpp
-  src/server/kcp_typedef.cpp
-  src/server/connection_manager.cpp
-  src/server/connection_container.cpp
-  src/server/connection.cpp
-  src/essential/_src/check_function.cpp
-  src/essential/_src/utility/strutil.cpp
-  src/util/connect_packet.cpp
-  src/client/kcp_client.cpp
-  src/client/kcp_client_wrap.cpp
-  src/client/kcp_client_util.cpp
+  src/net.cpp
 )
 
 if(MSVC)
@@ -64,6 +52,7 @@ target_compile_definitions(cxluax
     -DIMGUI_IMPL_OPENGL_LOADER_GLEW
     -DWORK_DIR="${ENGINE_DIR}/"
     -DCXLUAX
+    -DWIN32_LEAN_AND_MEAN
 )
 
 set_target_properties(cxluax PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "src/pch/precompile.h")

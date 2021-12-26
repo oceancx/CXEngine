@@ -12,7 +12,6 @@ set(GLFW_BUILD_TESTS OFF)
 set(GLFW_BUILD_DOCS OFF)
 add_subdirectory(glfw)
 add_subdirectory(glm)
-add_subdirectory(SOIL)
 
 # adding assimp
 #set(ASSIMP_INSTALL_PDB FALSE)

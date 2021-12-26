@@ -48,7 +48,8 @@ target_compile_definitions(CXServer
     -DGLEW_STATIC
     -DIMGUI_IMPL_OPENGL_LOADER_GLEW
     -DWORK_DIR="${ENGINE_DIR}/"
-    -DSIMPLE_SERVER 
+    -DSIMPLE_SERVER
+    -DWIN32_LEAN_AND_MEAN 
 )
 
 set_target_properties(CXServer PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "src/pch/precompile.h")

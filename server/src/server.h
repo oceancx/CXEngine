@@ -1,13 +1,8 @@
 #pragma once
 #include "singleton.h"
-#include "ezio/event_loop.h"
 #include "kbase/basic_macros.h"
-#include "ezio/socket_address.h"
-#include "ezio/tcp_connection.h"
-#include "ezio/tcp_server.h"
 #include "asio.hpp"
 
-using namespace ezio;
 
 
 
@@ -29,8 +24,6 @@ public:
 private:
 	
 	void DoAccept();
-	void OnConnection(const TCPConnectionPtr& conn);
-	void OnMessage(const TCPConnectionPtr& conn, Buffer& buf, TimePoint ts);
 	int m_Port;
 	lua_State* m_L;
 	asio::ip::tcp::acceptor m_Acceptor;
