@@ -56,7 +56,7 @@ internals目录下的库全是作者引用的内部库，意味着作者随时�
 5. server/仅用于CXServer的cpp/h
 6. data/梦幻西游资源存放目录
 7. cxluax是launcher项目
-8. res/目录下是一些其他资源，例如字体，图标，tsv行列表
+8. assets/目录下是一些其他资源，例如字体，图标，tsv行列表
 9. scripts/是CXEngine用到的所有lua文件，scripts/share/目录下的lua文件共享于launcher/CXEngine/CXServer，scripts/client/仅CXEngine使用，scripts/server仅CXServer使用
 
 
