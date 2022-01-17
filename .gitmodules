@@ -58,3 +58,7 @@
 	path = internals/luadbg
 	url = https://github.com/oceancx/luadbg.git
 	branch = master
+[submodule "internals/gsm-cmake"]
+	path = internals/gsm-cmake
+	url = https://github.com/oceancx/gsm-cmake.git
+	branch = master
