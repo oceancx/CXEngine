@@ -10,7 +10,6 @@
 #include "imgui/cximgui.h"
 #include "net_thread_queue.h"
 #include "lua_net.h"
-#include "luadbg.h"
 #include "time/timer_manager.h"
 
 #ifdef SIMPLE_ENGINE
@@ -54,7 +53,6 @@ void script_system_prepare_init()
 {
 	L = luaL_newstate();
 	luaL_openlibs(L);
-	luaopen_luadbg(L);
 	luaopen_filesystem(L);
 	luaopen_script_system(L);
 	luaopen_cximgui(L);
