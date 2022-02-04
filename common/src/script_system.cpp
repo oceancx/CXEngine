@@ -48,6 +48,7 @@ static bool g_DebugInCpp = false;
 static lua_State* L = nullptr;
 void luaopen_script_system(lua_State* L);
 
+HINSTANCE hDll = nullptr;
 
 void script_system_prepare_init()
 {
@@ -91,9 +92,20 @@ void script_system_prepare_init()
 	check_lua_error(L, res);
 	res = lua_pcall(L, 0, LUA_MULTRET, 0);
 	check_lua_error(L, res);
+
+	typedef 	int (*LuaDbgFunc)(lua_State* L);
+	hDll = nullptr;
+#ifdef SIMPLE_ENGINE
+	hDll = ::LoadLibrary(L"cxluadbg.dll");
+#else
+	hDll = ::LoadLibrary("cxluadbg.dll");
+#endif
+	if (hDll)
+	{
+		LuaDbgFunc instance = (LuaDbgFunc)GetProcAddress(hDll, "luaopen_luadbg");
+		instance(L);
+	}
 }
-
-
 
 void script_system_run_main_script()
 {
@@ -105,6 +117,7 @@ void script_system_run_main_script()
 void script_system_init()
 {
 	if (g_DebugInCpp)return;
+	
 	script_system_call_function(L, "on_script_system_init");
 }
 
@@ -115,7 +128,7 @@ bool script_system_update()
 	if (rets.size() > 0) {
 		bool success = any_cast<bool>(rets[0]);
 		return success;
-	}
+	} 
 	else {
 		return true;
 	}
@@ -131,6 +144,10 @@ void script_system_draw()
 void script_system_deinit()
 {
 	if (g_DebugInCpp)return;
+	if (hDll != nullptr)
+	{
+		FreeLibrary(hDll);
+	}
 	script_system_call_function(L, "on_script_system_deinit");
 }
 
@@ -156,7 +173,7 @@ bool process_is_server() {
 #endif
 }
 
- 
+
 
 uint64_t time_now() {
 	auto now = std::chrono::system_clock::now();
@@ -190,7 +207,7 @@ void luaopen_script_system(lua_State* L)
 #endif
 #undef REG_ENUM
 
-	script_system_register_function(L, process_is_server); 
+	script_system_register_function(L, process_is_server);
 
 	script_system_register_luac_function_with_name(L, "time_now", lua_time_now);
 	script_system_register_luac_function_with_name(L, "time_now_ms", lua_time_now);
