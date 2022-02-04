@@ -6,7 +6,6 @@ find_package(CXLua)
 find_package(GLEW CONFIG)
 find_package(glfw3)
 find_package(IMGui)
-find_package(luadbg_static)
 
 
 file(GLOB_RECURSE  SOURCES_CPP "src/*.cpp"   "src/*.cc")
@@ -48,6 +47,7 @@ target_include_directories(cxluax
 )
 target_compile_definitions(cxluax 
   PRIVATE 
+    -DLUADBG_DLL
     -DGLEW_STATIC
     -DIMGUI_IMPL_OPENGL_LOADER_GLEW
     -DWORK_DIR="${ENGINE_DIR}/"
@@ -63,5 +63,4 @@ PRIVATE
   GLEW
   CXLua::CXLua
   IMGui::IMGui
-  luadbg_static
 )

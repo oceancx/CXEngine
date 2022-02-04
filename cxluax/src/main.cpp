@@ -2,7 +2,6 @@
 #include <script_system.inl>
 #include "cxlua.h"
 
-#include <luadbg.h>
 #include "imgui/cximgui.h"
 #include "logger.h"
 #include "window.h"
@@ -17,11 +16,9 @@ int main(int argc, char* argv[])
 {
 	handle_command_args(argc, argv);
 	FileSystem::InitWorkPath();
-
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
-	luaopen_luadbg(L);
-	luaopen_filesystem(L);
+	luaopen_filesystem(L); 
 	luaopen_cximgui(L);
 	luaopen_logger(L);
 	luaopen_ne_support(L);
