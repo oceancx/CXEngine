@@ -6,7 +6,6 @@ find_package(GLEW CONFIG)
 find_package(glfw3)
 find_package(freetype CONFIG)
 find_package(IMGui)
-find_package(luadbg_static)
 find_package(gsm)
 find_package(miniaudio)
 find_package(nanovg)
@@ -101,7 +100,6 @@ target_link_libraries(CXEngine
     freetype
     CXLua::CXLua
     IMGui::IMGui
-    luadbg_static
     gsm
     miniaudio
     nanovg
