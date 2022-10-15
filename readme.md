@@ -1,3 +1,7 @@
+# 通知：
+
+未来本项目会转移到Unity开发，地址：https://github.com/oceancx/CXEngineUnity
+
 # 关于这个项目：
 
 CXEngine是一个方便大家使用lua+imgui做游戏的游戏引擎
