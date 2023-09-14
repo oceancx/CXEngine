@@ -461,7 +461,7 @@ int iw_render(lua_State* L)
 		ImGui::GetWindowDrawList()->AddCallback(iw_function_to_restore_shader_or_blend_state, nullptr);
 		ImGui::SetCursorPos(cs_pos);
 		glBindFramebuffer(GL_FRAMEBUFFER, WINDOW_INSTANCE->GetFrameBuffer());
-		glViewport(0, 0, m_Height, m_Height);
+		glViewport(0, 0, m_Width, m_Height);
 		glClearColor(clear_color.x , clear_color.y, clear_color.z, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		if (ref != -1) {
