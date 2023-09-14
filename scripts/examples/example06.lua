@@ -35,13 +35,13 @@ end
 local role_anim
 function init()
     role_anim = animation_create(SHAPEWDF, 0x49386FCE)--12-49386FCE  , SHAPEWDF = 12
-    role_anim:SetPos(300, 80)
+    role_anim:SetPos(0, 0)
 end
 
 function update()
     role_anim:Update()
     
-    imgui.SetCursorPos(300-55, 80)
+    imgui.SetCursorPos(300, 80)
     imgui.BeginGroup()
     draw_avatar_info(role_anim)
     imgui.EndGroup()

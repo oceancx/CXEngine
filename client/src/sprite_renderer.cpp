@@ -15,9 +15,7 @@
 SpriteRenderer::SpriteRenderer()
 {
 	// Configure shaders
-	glBindFramebuffer(GL_FRAMEBUFFER, WINDOW_INSTANCE->GetFrameBuffer());
-
-	m_pShader = new Shader("sprite.vs", "sprite.fs");
+	m_pShader = new Shader(FileSystem::GetShaderPath("sprite.vs").c_str(), FileSystem::GetShaderPath("sprite.fs").c_str());
 	m_pShader->Bind();
 	glUniform1i(glGetUniformLocation(m_pShader->GetProgramID(), "image"), 0);
 	glm::mat4 projection = glm::ortho(0.0f, WINDOW_INSTANCE->GetWidth() * 1.0f, WINDOW_INSTANCE->GetHeight() * 1.0f, 0.0f, -1.0f, 1.0f);
@@ -26,8 +24,6 @@ SpriteRenderer::SpriteRenderer()
 
 	initRenderData();
 	m_pShader->Unbind();
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 }
 
@@ -173,8 +169,7 @@ void SpriteRenderer::DrawMask(Texture* texture, glm::vec2 position, glm::vec2 si
 
 void SpriteRenderer::DrawFrameSprite(unsigned int textureID, glm::vec2 position, glm::vec2 size, GLfloat rotate, glm::vec3 color)
 {
-
-	m_pShader->Bind();
+	m_pShader->Bind(); 
 	glm::mat4 model = mat_mul(position, size, rotate);
 
 	glUniformMatrix4fv(glGetUniformLocation(m_pShader->GetProgramID(), "model"), 1, GL_FALSE, (GLfloat*)(&model));

@@ -20,8 +20,8 @@ Shader::Shader(const char* vertPath, const char* fragPath, const char* geomPath)
 	gShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
 	try 
 	{
-		m_VertexPath = FileSystem::GetShaderPath(vertPath);
-		m_FragmentPath = FileSystem::GetShaderPath(fragPath);
+		m_VertexPath = vertPath;
+		m_FragmentPath = fragPath;
 
 		vShaderFile.open(m_VertexPath.c_str());
 		fShaderFile.open(m_FragmentPath.c_str());

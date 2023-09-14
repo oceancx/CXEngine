@@ -36,9 +36,9 @@ GLFWwindow* m_pWindow = nullptr;
 static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 
-unsigned int m_Fbo;
-unsigned int m_Rbo;
-unsigned int m_TextureColor;
+unsigned int m_Fbo = 0;
+unsigned int m_Rbo = 0;
+unsigned int m_TextureColor = 0;
 
 GLFWwindow* Window::GetGLFWwindow() { return m_pWindow; };
 int Window::GetWidth() { return m_Width; };
@@ -84,13 +84,11 @@ static void glfw_framebuffer_size_callback(GLFWwindow* window, int width, int he
 	m_WindowWidth = width;
 	m_WindowHeight = height;
 
+	m_Width = m_WindowWidth;
+	m_Height = m_WindowHeight;
 	SpriteRenderer::GetInstance()->UpdateProjection();
-	glBindFramebuffer(GL_FRAMEBUFFER, m_Fbo);
-
 	create_game_rendertexture();
-
-
-	glViewport(0, 0, m_WindowWidth, m_WindowHeight);
+	
 }
 
 static void glfw_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -447,6 +445,7 @@ int iw_render(lua_State* L)
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+
 		ImGuiViewport* viewport = ImGui::GetMainViewport();
 		ImGui::SetNextWindowPos(viewport->Pos);
 		ImGui::SetNextWindowSize(viewport->Size);
@@ -462,6 +461,9 @@ int iw_render(lua_State* L)
 		ImGui::GetWindowDrawList()->AddCallback(iw_function_to_restore_shader_or_blend_state, nullptr);
 		ImGui::SetCursorPos(cs_pos);
 		glBindFramebuffer(GL_FRAMEBUFFER, WINDOW_INSTANCE->GetFrameBuffer());
+		glViewport(0, 0, m_Height, m_Height);
+		glClearColor(clear_color.x , clear_color.y, clear_color.z, clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		if (ref != -1) {
 			lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 			int res = lua_pcall(L, 0, 0, 0);

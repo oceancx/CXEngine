@@ -1,3 +1,5 @@
+-- CXEngine.exe --cwd=[工作目录] --script_path=[lua文件夹相对工作目录]/  --luapath=[相对script_path下的lua文件路径]
+
 script_system_dofile('../share/enums.lua')
 script_system_dofile('../share/enums_protocol.lua')
 script_system_dofile('../share/vfs.lua')
