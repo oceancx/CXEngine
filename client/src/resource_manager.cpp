@@ -9,7 +9,9 @@
 #include "actor/action.h"
 #include "texture_manager.h"
 #include "game.h"
-
+#include <graphics/bitmap.h>
+#include <utils.h>
+#include <stb_image.h>
 static std::map<uint32_t, std::string> s_PackPathMap =
 {
 	{ ADDONWDF,    "addon.wdf" },
@@ -185,14 +187,68 @@ uint64_t ResourceManager::GetWeaponActionResID(CXString id, int actionID)
 {
 	return GetActionResID(AVATAR_TYPE_WEAPON, id, actionID);
 }
-
+ 
 void ResourceManager::ExportWas(uint64_t id, CXString path)
 {
 	uint32_t pack, wasid;
 	DecodeWAS(id, pack, wasid);
-	s_Loaders[pack]->SaveWAS(wasid, path.c_str());
+	if (s_Loaders.find(pack) == s_Loaders.end())
+	{
+		s_Loaders[pack] = new NE::WDF(utils::GetPathByPackID(pack));
+	} 
+	Sprite* sprite = s_Loaders[pack]->UnpackSprite(wasid, {});
+	if (sprite != nullptr) {
+		nlohmann::json savejo = nlohmann::json::object();
+		savejo["key_x"] = sprite->KeyX;
+		savejo["key_y"] = sprite->KeyY;
+		savejo["width"] = sprite->Width;
+		savejo["height"] = sprite->Height;
+		savejo["group"] = sprite->GroupCount;
+		savejo["children"] = nlohmann::json::array();
+		for (int g = 0; g < sprite->GroupCount; g++) {
+			for (int f = 0; f < sprite->GroupFrameCount; f++) {
+				int i = g * sprite->GroupFrameCount + f;
+				auto& frame = sprite->Frames[i];
+				char save_path[512];
+				sprintf_s(save_path, "%s/%d_%d.bmp", path.c_str(), g, f);
+				char name[64];
+				sprintf_s(name, "%d_%d.bmp", g, f);
+				//printf("export %s \n ", save_path);
+				Bitmap::CreateBitmap(save_path, frame.Width, frame.Height, (char*)frame.Src.data(), 32);
+				nlohmann::json jo = nlohmann::json::object();
+				jo["name"] = name;
+				jo["key_x"] = frame.KeyX;
+				jo["key_y"] = frame.KeyY;
+				jo["width"] = frame.Width;
+				jo["height"] = frame.Height;
+				savejo["children"].push_back(jo);
+			}
+		}
+		char save_path[512];
+		sprintf_s(save_path, "%s/a.json", path.c_str());
+		
+		std::fstream f(save_path, std::ios::out);
+		std::string savejs = savejo.dump(4);
+		f << savejs << std::endl;
+		f.close();
+	}
 }
 
+void ResourceManager::ExportBGM(uint64_t resID, CXString path)
+{
+	uint32_t pack = 0;
+	uint32_t wasID = 0;
+	DecodeWAS(resID, pack, wasID);
+	uint64_t resid = res_encode_was(pack, wasID);
+	uint8_t* pData = NULL;
+	size_t size = 0;
+	int type = RESOURCE_MANAGER_INSTANCE->LoadWDFData(resid, pData, size);
+	if (type == NE::eFILE_TYPE_MP3) {
+		std::fstream f(path, std::ios::out | std::ios::binary);
+		f.write((char*)pData, size);
+		f.close();
+	}
+}
 
 PalSpriteInfo* ResourceManager::LoadSprite(uint64_t resID, std::vector<PalSchemePart>* pat)
 {
@@ -340,6 +396,123 @@ int res_export_was(lua_State* L) {
 	return 0;
 }
 
+int res_export_was_image(lua_State* L) {
+	uint64_t resid = (uint64_t)lua_tointeger(L, 1);
+	std::string path = lua_tostring(L, 2);
+	RESOURCE_MANAGER_INSTANCE->ExportWas(resid, path);
+	return 0;
+}
+
+int res_export_bgm(lua_State* L) {
+	std::string path = lua_tostring(L, 1);
+	uint64_t resid = (uint64_t)lua_tointeger(L, 2);
+	RESOURCE_MANAGER_INSTANCE->ExportBGM(resid, path);
+	
+	return 0;
+}
+
+void res_export_map(int map_id){
+	char outdir[256]{0};
+	sprintf_s(outdir, "%s/%d", FileSystem::GetResourcePath("unpack/map").c_str(), map_id);
+	char cmd[256];
+	sprintf_s(cmd, "mkdir -p \"%s/tile\"", outdir);
+	printf("cmd %s", cmd);
+	system(cmd);
+
+	sprintf_s(cmd, "mkdir -p \"%s/mask\"", outdir);
+	printf("cmd %s", cmd);
+	system(cmd);
+
+	std::string path = FileSystem::GetMapPath(std::to_string(map_id));
+	auto* xyqMap = new NE::MAP(path.c_str());
+	int row = xyqMap->Row();
+	int col = xyqMap->Col();
+
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			int unit = i * col + j;
+			xyqMap->ReadUnit(unit);
+			/*char save_path[512];
+			sprintf_s(save_path, "%s/tile/%d_%d.bmp", outdir, i,j);
+
+			int w = 0, h = 0;
+			int n = 0;
+			uint8_t* imgBuffer = stbi_load_from_memory(xyqMap->GetUnitBitmap(unit), (int)xyqMap->GetUnitBitmapSize(unit),
+				&w, &h, &n, 3);
+
+			uint8_t* newBuffer = new uint8_t[h * w * n]{0};
+			for (int imy = 0; imy < h; imy++) {
+				for (int imx = 0; imx < w; imx++) {
+					uint8_t b = imgBuffer[imy * w * n + imx * n];
+					uint8_t g = imgBuffer[imy * w * n + imx * n+1];
+					uint8_t r = imgBuffer[imy * w * n + imx * n+2];
+					imgBuffer[imy * w * n + imx * n] = r;
+					imgBuffer[imy * w * n + imx * n+1] = g;
+					imgBuffer[imy * w * n + imx * n+2] = b;
+				}
+				memcpy(newBuffer + (h - 1 - imy) * w * n  , imgBuffer + imy * w * n, w * n);
+			}
+			stbi_image_free(imgBuffer);
+			Bitmap::CreateBitmap(save_path, w, h, (char*)newBuffer, 24);
+			delete[] newBuffer;*/
+		}
+	}
+	int m_CellWidth = col * 16;
+	int m_CellHeight = row * 12;
+	Json jo = Json::object();
+	jo["row"] = row;
+	jo["col"] = col;
+	jo["image_width"] = xyqMap->Width();
+	jo["image_height"] = xyqMap->Height();
+	jo["map_width"] = xyqMap->MapWidth();
+	jo["map_height"] = xyqMap->MapHeight();
+	jo["cell_width"] = m_CellWidth;
+	jo["cell_height"] = m_CellHeight;
+	jo["masks"] = Json::array();
+
+	std::vector<uint16_t> m_Cell;
+	m_Cell.resize(m_CellWidth * m_CellHeight, 0);
+	for (int y = 0; y < m_CellHeight; y++) {
+		int i_row = y / 12;
+		int cy = y % 12;
+		for (int x = 0; x < m_CellWidth; x++) {
+			int i_col = x / 16;
+			int cx = x % 16;
+			auto& unit = xyqMap->GetUnit(i_row * col + i_col);
+			m_Cell[y * m_CellWidth + x] = unit.Cell[cy * 16 + cx]>0?0xffff:0;
+		}
+	}
+
+	char cell_save_path[512];
+	sprintf_s(cell_save_path, "%s/cell.bmp", outdir);
+	Bitmap::CreateBitmap(cell_save_path, m_CellWidth, m_CellHeight, (char*)m_Cell.data(), 16);
+	
+	for (int i = 0; i < xyqMap->MaskSize(); i++) {
+		xyqMap->ReadMask(i);
+		auto& mask = xyqMap->GetMask(i);
+		char path[512]{0};
+		sprintf_s(path, "%s/mask/%d.bmp", outdir,i);
+		Bitmap::CreateBitmap(path, mask.Width, mask.Height, (char*)mask.Data.data(), 32);
+
+		Json joMask= Json::object();
+		joMask["index"] = i;
+		joMask["width"] = mask.Width;
+		joMask["height"] = mask.Height;
+		joMask["start_x"] = mask.StartX;
+		joMask["start_y"] = mask.StartY;
+		joMask["size"] = mask.Size;
+		jo["masks"].push_back(joMask);
+	}
+
+	char json_path[512]{ 0 };
+	sprintf_s(json_path, "%s/map.json", outdir);
+
+	std::fstream f(json_path, std::ios::out);
+	std::string savejs = jo.dump(4);
+	f << savejs << std::endl;
+	f.close();
+}
+
 
 void luaopen_resource_manager(lua_State* L)
 {
@@ -383,10 +556,10 @@ void luaopen_resource_manager(lua_State* L)
 	script_system_register_function(L, resource_manager_update);
 	script_system_register_function(L, resource_manager_deinit);
 
+	script_system_register_function(L, res_export_map);
 
+	script_system_register_luac_function(L, res_export_bgm);
 	script_system_register_luac_function(L, res_get_was);
 	script_system_register_luac_function(L, res_export_was);
-
-
-	
+	script_system_register_luac_function(L, res_export_was_image);
 }

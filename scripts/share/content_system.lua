@@ -100,7 +100,7 @@ function init_skill_template_table()
         { name='sub_type',fmt='i',def=0},
         { name='school',fmt='i',def=0},
         { name='combo', fmt='i', def=0},
-        { name='atk_anim', fmt='res', def='0-1D3FF13C' },
+        { name='atk_anim', fmt='res', def=0 },
         { name='group_kill', fmt='i', def=0},
         { name='cast_anim', fmt='i', def=0},
         { name='act_turn', fmt='i', def=0}

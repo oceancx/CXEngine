@@ -82,6 +82,7 @@ public:
 
 
 	void ExportWas(uint64_t id, CXString path);
+	void ExportBGM(uint64_t id, CXString path);
 
 
 private:
