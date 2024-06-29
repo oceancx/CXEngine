@@ -45,7 +45,7 @@ bool TextRenderer::IsInRange(wchar_t c)
 TextRenderer::TextRenderer()
 {
 	// Configure VAO/VBO for texture quads
-	m_pShader = new Shader("text.vs", "text.fs");
+	m_pShader = new Shader(FileSystem::GetShaderPath("text.vs").c_str(), FileSystem::GetShaderPath("text.fs").c_str());
 	glm::mat4 projection = glm::ortho(0.0f, WINDOW_INSTANCE->GetWidth() * 1.0f, 0.0f, WINDOW_INSTANCE->GetHeight() * 1.0f, -1.0f, 1.0f);
 	m_pShader->Bind();
 	glUniformMatrix4fv(glGetUniformLocation(m_pShader->GetProgramID(), "projection"), 1, GL_FALSE, (GLfloat*)&projection);

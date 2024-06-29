@@ -23,11 +23,12 @@ function init()
     
     player = actor_manager_create_actor(1)              --actor_manager_create_actor创建的actor不用在update里面调用actor:Update和actor:Draw
     player:ResetASM()
-    player:SetPos(400,300)
+    player:SetPos(900,300)
     player:SetProperty(PROP_NAME,"Fish")
     actor_manager_set_local_player(player:GetID())      --设置游戏里的local player，即为响应鼠标键盘操作的player
 
     local player = actor_manager_fetch_local_player()
+    player:SetProperty(PROP_SCENE_ID, 186)    
     local scene_id = player:GetProperty(PROP_SCENE_ID)    
     scene_manager_switch_scene_by_id(scene_id)          --scene_id可以在scene.tsv里面查到
 end
@@ -40,6 +41,8 @@ function update()
         local dest_x, dest_y = util_screen_pos_to_map_pos(mx, my)       --将鼠标在屏幕上的坐标转换为世界坐标
         player:MoveTo(dest_x,dest_y)
     end
+    scene_manager_update()
+    scene_manager_draw()
 end
 
 do

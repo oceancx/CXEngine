@@ -69,7 +69,7 @@ function game_server_on_connection(connected)
 		msg.account = USER_ACCOUNT
 		msg.password = USER_PASSWORD
 		msg.name = 'yzxy'
-		msg.scene_id = -105
+		msg.scene_id = 186
 		msg.role_id = 1
 		msg.weapon_id = 40
 		msg.x = 306
